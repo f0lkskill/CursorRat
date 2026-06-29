@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://4ljkb745k4sb"]
+
+[ext_resource type="Script" uid="uid://5wi6fty5l28q" path="res://scripts/player_old.gd" id="1_n3cer"]
+[ext_resource type="Texture2D" uid="uid://cj3tqbeouem21" path="res://assets/charactor/cursor.png" id="3_k05ig"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_n3cer"]
+polygon = PackedVector2Array(6, 2, 5, 77, 11, 79, 25, 67, 39, 91, 56, 82, 46, 58, 66, 58, 70, 49)
+
+[node name="Player" type="CharacterBody2D" unique_id=744715681]
+script = ExtResource("1_n3cer")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=1938351121]
+visible = false
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_k05ig")
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1000678874]
+scale = Vector2(0.4, 0.4)
+polygon = PackedVector2Array(37, 8.5, 18, 3.4, 18, 5.8, 12.5, 9, 10.7, 9, 3.7, 25, 2, 25, 2, 42, 0.9, 42, 5.1, 147, 5.9, 147, 5, 182, 5, 191.4, 7, 196.4, 7, 200.9, 14, 206.9, 14, 209.2, 29.2, 208, 31.7, 208, 58.8, 186, 60.8, 186, 80, 223.5, 80, 225.8, 87, 232.8, 115, 233, 118.5, 231, 121.7, 231, 137.7, 219, 139.2, 219, 144.2, 209, 145.8, 209, 146.8, 200, 148.3, 200, 147, 190.7, 147, 187.5, 131.6, 161.6, 136.3, 161, 150.5, 161, 156.5, 158, 158.9, 158, 165.9, 150, 167.5, 150, 172.5, 134, 174, 134, 174, 123.3, 170, 118.3, 170, 116.1, 135, 83, 135, 81.9, 103.6, 61, 100.7, 61, 79, 42.1, 79, 40.8, 70.5, 36, 68.7, 36, 37, 10)
+
+[node name="light_occluder" type="LightOccluder2D" parent="." unique_id=1752736229]
+occluder = SubResource("OccluderPolygon2D_n3cer")

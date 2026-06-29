@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dav1l17vgn48a"]
+
+[ext_resource type="Script" uid="uid://bmlrpsh7wewy5" path="res://scripts/enemy/base_enemy.cs" id="1_vviut"]
+[ext_resource type="PackedScene" uid="uid://bjgxukm7h72y1" path="res://objects/tools/init.tscn" id="1_xaf6i"]
+[ext_resource type="Texture2D" uid="uid://cj3tqbeouem21" path="res://assets/charactor/cursor.png" id="3_vviut"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rpcek"]
+
+[node name="base_enemy" type="CharacterBody2D" unique_id=165994402]
+position = Vector2(198, -200)
+script = ExtResource("1_vviut")
+
+[node name="init" parent="." unique_id=2120728096 instance=ExtResource("1_xaf6i")]
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=1173546242]
+texture = ExtResource("3_vviut")
+
+[node name="shape" type="CollisionShape2D" parent="." unique_id=1761263628]
+
+[node name="light_occluder" type="LightOccluder2D" parent="." unique_id=712406247]
+occluder = SubResource("OccluderPolygon2D_rpcek")

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://5r52t7krevaw"]
+
+[ext_resource type="PackedScene" uid="uid://bjgxukm7h72y1" path="res://objects/tools/init.tscn" id="2_acu4c"]
+[ext_resource type="Texture2D" uid="uid://cw3kw4c42jbbv" path="res://icon.svg" id="2_lywtw"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rpcek"]
+
+[node name="BaseObstacle" type="StaticBody2D" unique_id=2102120021]
+
+[node name="init" parent="." unique_id=2120728096 instance=ExtResource("2_acu4c")]
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=1173546242]
+texture = ExtResource("2_lywtw")
+
+[node name="shape" type="CollisionShape2D" parent="." unique_id=1761263628]
+
+[node name="light_occluder" type="LightOccluder2D" parent="." unique_id=712406247]
+occluder = SubResource("OccluderPolygon2D_rpcek")

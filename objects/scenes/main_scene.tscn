@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cum2yp0xq8clr"]
+
+[ext_resource type="PackedScene" uid="uid://d1d4up3uo0kbl" path="res://objects/charactor/enemy/zombie.tscn" id="1_pkkib"]
+[ext_resource type="PackedScene" uid="uid://5r52t7krevaw" path="res://objects/obstacles/base_obstacle.tscn" id="2_xjunv"]
+[ext_resource type="PackedScene" uid="uid://bhvsvwjhbmq2j" path="res://objects/charactor/player_manager.tscn" id="3_pkkib"]
+
+[sub_resource type="Gradient" id="Gradient_xjunv"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.5813953)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pkkib"]
+gradient = SubResource("Gradient_xjunv")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_pkkib"]
+colors = PackedColorArray(0.32941177, 0.32941177, 0.32941177, 1, 0.32915837, 0.3291584, 0.32915837, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vp7dn"]
+gradient = SubResource("Gradient_pkkib")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xjunv"]
+polygon = PackedVector2Array(-1238, -1107, -1206, 1060, 1223, 1071, 1221, -1096)
+
+[node name="MainScene" type="Node2D" unique_id=352933808]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1154176613]
+position = Vector2(-1.9999924, 5.000002)
+scale = Vector2(2.5618489, 2.441406)
+energy = 1.52
+blend_mode = 2
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.38039216)
+shadow_filter = 2
+shadow_filter_smooth = 1.7
+texture = SubResource("GradientTexture2D_pkkib")
+texture_scale = 4.82
+
+[node name="back_ground" type="TextureRect" parent="." unique_id=681356409]
+offset_left = -1135.0
+offset_top = -852.0
+offset_right = 1103.0
+offset_bottom = 805.0
+texture = SubResource("GradientTexture1D_vp7dn")
+
+[node name="light_occluder" type="LightOccluder2D" parent="back_ground" unique_id=2130775952]
+visible = false
+position = Vector2(413, 302)
+occluder = SubResource("OccluderPolygon2D_xjunv")
+
+[node name="player" parent="." unique_id=163287506 instance=ExtResource("3_pkkib")]
+position = Vector2(-328, -178)
+Speed = 700.0
+
+[node name="enemies" type="Node2D" parent="." unique_id=956815377]
+
+[node name="zombie" parent="enemies" unique_id=349148583 node_paths=PackedStringArray("PlayerManager") instance=ExtResource("1_pkkib")]
+position = Vector2(-75, -205)
+PlayerManager = NodePath("../../player")
+
+[node name="obstacles" type="Node2D" parent="." unique_id=172103438]
+
+[node name="BaseObstacle" parent="obstacles" unique_id=2102120021 instance=ExtResource("2_xjunv")]
+position = Vector2(3, 157)
+
+[node name="BaseObstacle2" parent="obstacles" unique_id=1953326287 instance=ExtResource("2_xjunv")]
+position = Vector2(190, -32)
+
+[node name="BaseObstacle3" parent="obstacles" unique_id=74405878 instance=ExtResource("2_xjunv")]
+position = Vector2(-44, -143)
+
+[node name="BaseObstacle4" parent="obstacles" unique_id=626001464 instance=ExtResource("2_xjunv")]
+position = Vector2(-224, 38)
