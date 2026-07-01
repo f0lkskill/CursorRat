@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://d1d4up3uo0kbl" path="res://objects/charactor/enemy/zombie.tscn" id="1_pkkib"]
 [ext_resource type="Script" uid="uid://dwj6dwjuhn21b" path="res://scripts/spawn.cs" id="1_vp7dn"]
 [ext_resource type="PackedScene" uid="uid://5r52t7krevaw" path="res://objects/obstacles/base_obstacle.tscn" id="2_xjunv"]
+[ext_resource type="PackedScene" uid="uid://b8g6wtawg52c4" path="res://objects/scenes/room/stage.tscn" id="3_kf3xu"]
 [ext_resource type="PackedScene" uid="uid://bhvsvwjhbmq2j" path="res://objects/charactor/player_manager.tscn" id="3_pkkib"]
-[ext_resource type="PackedScene" uid="uid://b8g6wtawg52c4" path="res://objects/scenes/room/stage.tscn" id="4_vp7dn"]
 
 [sub_resource type="Gradient" id="Gradient_xjunv"]
 interpolation_mode = 2
@@ -43,16 +43,19 @@ texture = SubResource("GradientTexture2D_pkkib")
 texture_scale = 4.82
 
 [node name="back_ground" type="TextureRect" parent="." unique_id=681356409]
-offset_left = -1220.0
-offset_top = -841.0
-offset_right = 1018.0
-offset_bottom = 816.0
+offset_left = -1173.0
+offset_top = -659.0
+offset_right = 1065.0
+offset_bottom = 998.0
 texture = SubResource("GradientTexture1D_vp7dn")
 
 [node name="light_occluder" type="LightOccluder2D" parent="back_ground" unique_id=2130775952]
 visible = false
 position = Vector2(413, 302)
 occluder = SubResource("OccluderPolygon2D_xjunv")
+
+[node name="stage" parent="." unique_id=2111426621 instance=ExtResource("3_kf3xu")]
+position = Vector2(3, -1730)
 
 [node name="player" parent="." unique_id=163287506 instance=ExtResource("3_pkkib")]
 position = Vector2(-557, 136)
@@ -63,15 +66,13 @@ Speed = 1000.0
 [node name="obstacles" type="Node2D" parent="." unique_id=172103438]
 
 [node name="BaseObstacle" parent="obstacles" unique_id=2102120021 instance=ExtResource("2_xjunv")]
-position = Vector2(-2116, 1751)
+position = Vector2(3, 157)
 
 [node name="BaseObstacle2" parent="obstacles" unique_id=1953326287 instance=ExtResource("2_xjunv")]
-position = Vector2(-1929, 1562)
+position = Vector2(190, -32)
 
 [node name="BaseObstacle3" parent="obstacles" unique_id=74405878 instance=ExtResource("2_xjunv")]
-position = Vector2(-2163, 1451)
+position = Vector2(-44, -143)
 
 [node name="BaseObstacle4" parent="obstacles" unique_id=626001464 instance=ExtResource("2_xjunv")]
-position = Vector2(-2343, 1632)
-
-[node name="stage" parent="." unique_id=2111426621 instance=ExtResource("4_vp7dn")]
+position = Vector2(-224, 38)
