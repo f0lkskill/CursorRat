@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b1dy56fgk4a7o"]
+
+[ext_resource type="Texture2D" uid="uid://br2gvicqpch0p" path="res://assets/room/rock_boss_room.png" id="1_ubt06"]
+
+[node name="boos_room" type="Node2D" unique_id=505015484]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1580844816]
+texture = ExtResource("1_ubt06")

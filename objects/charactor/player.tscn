@@ -21,9 +21,6 @@ metadata/_snap_enabled = true
 
 [node name="init" parent="." unique_id=2120728096 instance=ExtResource("2_j6tlk")]
 
-[node name="sprite" type="Sprite2D" parent="." unique_id=1173546242]
-texture = ExtResource("3_r02lg")
-
 [node name="shape" type="CollisionShape2D" parent="." unique_id=1761263628]
 
 [node name="light_occluder" type="LightOccluder2D" parent="." unique_id=712406247]
@@ -37,11 +34,11 @@ rotation_smoothing_enabled = true
 rotation_smoothing_speed = 10.0
 
 [node name="health_bar" type="TextureProgressBar" parent="." unique_id=524104250]
-layout_direction = 1
 offset_left = -20.0
 offset_top = 44.0
 offset_right = 20.0
 offset_bottom = 84.0
+layout_direction = 1
 value = 75.0
 fill_mode = 5
 nine_patch_stretch = true
@@ -50,3 +47,6 @@ texture_over = SubResource("GradientTexture2D_l8o3r")
 texture_progress = ExtResource("4_r02lg")
 tint_under = Color(1, 1, 1, 0.39607844)
 tint_progress = Color(1, 0, 0, 1)
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=916797990]
+texture = ExtResource("3_r02lg")

@@ -10,7 +10,7 @@ public partial class zombie : base_enemy
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
-    {
-        HealthManager.TakeDamage(0.1f);
-    }
+	{
+		HealthManager.TakeDamage(0.1f);
+	}
 }

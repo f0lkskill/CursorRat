@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c2fupxt73ajld"]
+
+[ext_resource type="Texture2D" uid="uid://b170aj6dufabs" path="res://assets/room/rock_bar_room.png" id="1_jbj0i"]
+
+[node name="bar_room" type="Node2D" unique_id=1610775795]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=111700416]
+texture = ExtResource("1_jbj0i")

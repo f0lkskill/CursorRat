@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b2io53q5c12xt"]
+
+[ext_resource type="Script" uid="uid://bntn8j1tihahj" path="res://scripts/Room.cs" id="1_sk65m"]
+[ext_resource type="Texture2D" uid="uid://bl7646pf8f8uo" path="res://assets/room/rock_room.png" id="2_vqr5h"]
+[ext_resource type="PackedScene" uid="uid://bk6wp1lvqpl1y" path="res://objects/scenes/room/door/door.tscn" id="3_vqr5h"]
+
+[node name="room" type="Node2D" unique_id=1877895239]
+script = ExtResource("1_sk65m")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=558841734]
+texture = ExtResource("2_vqr5h")
+
+[node name="door" parent="." unique_id=623878969 instance=ExtResource("3_vqr5h")]
+visibility_layer = 2
+position = Vector2(0, -117)

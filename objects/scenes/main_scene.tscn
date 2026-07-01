@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d1d4up3uo0kbl" path="res://objects/charactor/enemy/zombie.tscn" id="1_pkkib"]
 [ext_resource type="PackedScene" uid="uid://5r52t7krevaw" path="res://objects/obstacles/base_obstacle.tscn" id="2_xjunv"]
 [ext_resource type="PackedScene" uid="uid://bhvsvwjhbmq2j" path="res://objects/charactor/player_manager.tscn" id="3_pkkib"]
+[ext_resource type="PackedScene" uid="uid://b8g6wtawg52c4" path="res://objects/scenes/room/stage.tscn" id="4_vp7dn"]
 
 [sub_resource type="Gradient" id="Gradient_xjunv"]
 interpolation_mode = 2
@@ -57,19 +58,21 @@ Speed = 700.0
 [node name="enemies" type="Node2D" parent="." unique_id=956815377]
 
 [node name="zombie" parent="enemies" unique_id=349148583 node_paths=PackedStringArray("PlayerManager") instance=ExtResource("1_pkkib")]
-position = Vector2(-75, -205)
+position = Vector2(-1716, 1764)
 PlayerManager = NodePath("../../player")
 
 [node name="obstacles" type="Node2D" parent="." unique_id=172103438]
 
 [node name="BaseObstacle" parent="obstacles" unique_id=2102120021 instance=ExtResource("2_xjunv")]
-position = Vector2(3, 157)
+position = Vector2(-2116, 1751)
 
 [node name="BaseObstacle2" parent="obstacles" unique_id=1953326287 instance=ExtResource("2_xjunv")]
-position = Vector2(190, -32)
+position = Vector2(-1929, 1562)
 
 [node name="BaseObstacle3" parent="obstacles" unique_id=74405878 instance=ExtResource("2_xjunv")]
-position = Vector2(-44, -143)
+position = Vector2(-2163, 1451)
 
 [node name="BaseObstacle4" parent="obstacles" unique_id=626001464 instance=ExtResource("2_xjunv")]
-position = Vector2(-224, 38)
+position = Vector2(-2343, 1632)
+
+[node name="stage" parent="." unique_id=2111426621 instance=ExtResource("4_vp7dn")]
