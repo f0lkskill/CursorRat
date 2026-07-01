@@ -7,7 +7,7 @@ extends Node
 func _ready() -> void:
 	# 设置碰撞形状为精灵的矩形
 	var rect_shape: RectangleShape2D = RectangleShape2D.new()
-	rect_shape.size = sprite.texture.get_size()
+	rect_shape.size = sprite.scale * sprite.texture.get_size()
 	shape.shape = rect_shape
 
 	# 堆石山

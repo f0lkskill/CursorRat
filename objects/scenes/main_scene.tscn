@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cum2yp0xq8clr"]
 
 [ext_resource type="PackedScene" uid="uid://d1d4up3uo0kbl" path="res://objects/charactor/enemy/zombie.tscn" id="1_pkkib"]
+[ext_resource type="Script" uid="uid://dwj6dwjuhn21b" path="res://scripts/spawn.cs" id="1_vp7dn"]
 [ext_resource type="PackedScene" uid="uid://5r52t7krevaw" path="res://objects/obstacles/base_obstacle.tscn" id="2_xjunv"]
 [ext_resource type="PackedScene" uid="uid://bhvsvwjhbmq2j" path="res://objects/charactor/player_manager.tscn" id="3_pkkib"]
 
@@ -25,6 +26,8 @@ gradient = SubResource("Gradient_pkkib")
 polygon = PackedVector2Array(-1238, -1107, -1206, 1060, 1223, 1071, 1221, -1096)
 
 [node name="MainScene" type="Node2D" unique_id=352933808]
+script = ExtResource("1_vp7dn")
+EnemyScenes = Array[PackedScene]([ExtResource("1_pkkib")])
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1154176613]
 position = Vector2(-1.9999924, 5.000002)
@@ -39,10 +42,10 @@ texture = SubResource("GradientTexture2D_pkkib")
 texture_scale = 4.82
 
 [node name="back_ground" type="TextureRect" parent="." unique_id=681356409]
-offset_left = -1135.0
-offset_top = -852.0
-offset_right = 1103.0
-offset_bottom = 805.0
+offset_left = -1220.0
+offset_top = -841.0
+offset_right = 1018.0
+offset_bottom = 816.0
 texture = SubResource("GradientTexture1D_vp7dn")
 
 [node name="light_occluder" type="LightOccluder2D" parent="back_ground" unique_id=2130775952]
@@ -51,14 +54,10 @@ position = Vector2(413, 302)
 occluder = SubResource("OccluderPolygon2D_xjunv")
 
 [node name="player" parent="." unique_id=163287506 instance=ExtResource("3_pkkib")]
-position = Vector2(-328, -178)
-Speed = 700.0
+position = Vector2(-557, 136)
+Speed = 1000.0
 
 [node name="enemies" type="Node2D" parent="." unique_id=956815377]
-
-[node name="zombie" parent="enemies" unique_id=349148583 node_paths=PackedStringArray("PlayerManager") instance=ExtResource("1_pkkib")]
-position = Vector2(-75, -205)
-PlayerManager = NodePath("../../player")
 
 [node name="obstacles" type="Node2D" parent="." unique_id=172103438]
 

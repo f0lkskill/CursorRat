@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bere6gd76aftw"]
+
+[ext_resource type="Texture2D" uid="uid://cjf2d277nmlpu" path="res://assets/charactor/process_back.png" id="1_6ndaj"]
+[ext_resource type="Texture2D" uid="uid://bnievwlsu3pbu" path="res://assets/charactor/process.png" id="2_1dhek"]
+[ext_resource type="Script" uid="uid://bcprca5i33aws" path="res://scripts/ui/health_bar.cs" id="3_1dhek"]
+
+[sub_resource type="Gradient" id="Gradient_inktr"]
+offsets = PackedFloat32Array(0, 0.479798, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l8o3r"]
+gradient = SubResource("Gradient_inktr")
+width = 100
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_1dhek"]
+offsets = PackedFloat32Array(0, 0.16666667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wvhbo"]
+gradient = SubResource("Gradient_1dhek")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.2, 0.90000004)
+metadata/_snap_enabled = true
+
+[node name="health_bar" type="TextureProgressBar" unique_id=1090233696]
+self_modulate = Color(1, 1, 1, 0.80784315)
+offset_left = -79.0
+offset_top = -7.0
+offset_right = 78.0
+offset_bottom = 87.0
+layout_direction = 1
+value = 75.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_under = ExtResource("1_6ndaj")
+texture_over = SubResource("GradientTexture2D_l8o3r")
+texture_progress = ExtResource("2_1dhek")
+tint_under = Color(1, 1, 1, 0.39607844)
+tint_progress = Color(1, 0, 0, 1)
+script = ExtResource("3_1dhek")
+
+[node name="bord" type="TextureRect" parent="." unique_id=1507057470]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 52.0
+offset_top = 71.0
+offset_right = 102.0
+offset_bottom = 115.0
+texture = SubResource("GradientTexture2D_wvhbo")
+expand_mode = 1
+
+[node name="num" type="Label" parent="." unique_id=1691102367]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 59.0
+offset_right = 109.0
+offset_bottom = 121.0
+theme_override_colors/font_color = Color(1, 0.32410014, 0.25894427, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6039216)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "91"
+horizontal_alignment = 1
+vertical_alignment = 1

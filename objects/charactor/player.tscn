@@ -1,25 +1,16 @@
 [gd_scene format=3 uid="uid://dnyomceja2cy7"]
 
 [ext_resource type="PackedScene" uid="uid://bjgxukm7h72y1" path="res://objects/tools/init.tscn" id="2_j6tlk"]
-[ext_resource type="Texture2D" uid="uid://cjf2d277nmlpu" path="res://assets/charactor/process_back.png" id="3_j6tlk"]
+[ext_resource type="PackedScene" uid="uid://bere6gd76aftw" path="res://objects/ui/health_bar.tscn" id="3_k05ig"]
 [ext_resource type="Texture2D" uid="uid://cw3kw4c42jbbv" path="res://icon.svg" id="3_r02lg"]
-[ext_resource type="Texture2D" uid="uid://bnievwlsu3pbu" path="res://assets/charactor/process.png" id="4_r02lg"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rpcek"]
-
-[sub_resource type="Gradient" id="Gradient_inktr"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_l8o3r"]
-gradient = SubResource("Gradient_inktr")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.90000004, 0.3)
-metadata/_snap_enabled = true
 
 [node name="player" type="CharacterBody2D" unique_id=165994402]
 
 [node name="init" parent="." unique_id=2120728096 instance=ExtResource("2_j6tlk")]
+
+[node name="health_bar" parent="." unique_id=1090233696 instance=ExtResource("3_k05ig")]
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=1173546242]
 texture = ExtResource("3_r02lg")
@@ -30,23 +21,8 @@ texture = ExtResource("3_r02lg")
 occluder = SubResource("OccluderPolygon2D_rpcek")
 
 [node name="camera" type="Camera2D" parent="." unique_id=354427276]
-zoom = Vector2(0.8, 0.8)
+zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 10.0
-
-[node name="health_bar" type="TextureProgressBar" parent="." unique_id=524104250]
-layout_direction = 1
-offset_left = -20.0
-offset_top = 44.0
-offset_right = 20.0
-offset_bottom = 84.0
-value = 75.0
-fill_mode = 5
-nine_patch_stretch = true
-texture_under = ExtResource("3_j6tlk")
-texture_over = SubResource("GradientTexture2D_l8o3r")
-texture_progress = ExtResource("4_r02lg")
-tint_under = Color(1, 1, 1, 0.39607844)
-tint_progress = Color(1, 0, 0, 1)

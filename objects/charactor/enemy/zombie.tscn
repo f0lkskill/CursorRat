@@ -7,11 +7,11 @@
 
 [node name="zombie" type="Node2D" unique_id=349148583 node_paths=PackedStringArray("HealthManager")]
 script = ExtResource("1_x3ihl")
-HealthManager = NodePath("base_enemy/base_health")
+HealthManager = NodePath("body/base_health")
 
-[node name="base_enemy" parent="." unique_id=165994402 instance=ExtResource("2_5qex4")]
+[node name="body" parent="." unique_id=165994402 instance=ExtResource("2_5qex4")]
 
-[node name="base_health" type="Node2D" parent="base_enemy" unique_id=1353650310]
+[node name="base_health" type="Node2D" parent="body" unique_id=1353650310]
 position = Vector2(-198, 200)
 script = ExtResource("3_5qex4")
 heal_label_scene = ExtResource("4_onsdp")

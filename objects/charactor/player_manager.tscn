@@ -8,6 +8,7 @@
 [node name="player" type="Node2D" unique_id=163287506 node_paths=PackedStringArray("HealthManager")]
 script = ExtResource("1_bd8et")
 HealthManager = NodePath("body/base_health")
+KnockbackStrength = 400.0
 
 [node name="body" parent="." unique_id=165994402 instance=ExtResource("1_iq5em")]
 

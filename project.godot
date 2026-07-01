@@ -12,7 +12,7 @@ config_version=5
 
 config/name="CursoRat_A.side"
 run/main_scene="uid://cum2yp0xq8clr"
-config/features=PackedStringArray("4.6", "C#", "Forward Plus")
+config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
