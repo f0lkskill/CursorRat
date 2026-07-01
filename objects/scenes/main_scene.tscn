@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dwj6dwjuhn21b" path="res://scripts/spawn.cs" id="1_vp7dn"]
 [ext_resource type="PackedScene" uid="uid://5r52t7krevaw" path="res://objects/obstacles/base_obstacle.tscn" id="2_xjunv"]
 [ext_resource type="PackedScene" uid="uid://bhvsvwjhbmq2j" path="res://objects/charactor/player_manager.tscn" id="3_pkkib"]
+[ext_resource type="PackedScene" uid="uid://b8g6wtawg52c4" path="res://objects/scenes/room/stage.tscn" id="4_vp7dn"]
 
 [sub_resource type="Gradient" id="Gradient_xjunv"]
 interpolation_mode = 2
@@ -62,13 +63,15 @@ Speed = 1000.0
 [node name="obstacles" type="Node2D" parent="." unique_id=172103438]
 
 [node name="BaseObstacle" parent="obstacles" unique_id=2102120021 instance=ExtResource("2_xjunv")]
-position = Vector2(3, 157)
+position = Vector2(-2116, 1751)
 
 [node name="BaseObstacle2" parent="obstacles" unique_id=1953326287 instance=ExtResource("2_xjunv")]
-position = Vector2(190, -32)
+position = Vector2(-1929, 1562)
 
 [node name="BaseObstacle3" parent="obstacles" unique_id=74405878 instance=ExtResource("2_xjunv")]
-position = Vector2(-44, -143)
+position = Vector2(-2163, 1451)
 
 [node name="BaseObstacle4" parent="obstacles" unique_id=626001464 instance=ExtResource("2_xjunv")]
-position = Vector2(-224, 38)
+position = Vector2(-2343, 1632)
+
+[node name="stage" parent="." unique_id=2111426621 instance=ExtResource("4_vp7dn")]

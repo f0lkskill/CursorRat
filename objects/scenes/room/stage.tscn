@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b8g6wtawg52c4"]
+
+[ext_resource type="Script" uid="uid://bf74y1x3iph1o" path="res://scripts/Stage.cs" id="1_nhgda"]
+[ext_resource type="PackedScene" uid="uid://b2io53q5c12xt" path="res://objects/scenes/room/room/room.tscn" id="2_6pas0"]
+[ext_resource type="PackedScene" uid="uid://b8bxjunrxeqje" path="res://objects/scenes/room/cheast_room/cheast_room.tscn" id="3_8unbk"]
+[ext_resource type="PackedScene" uid="uid://c2fupxt73ajld" path="res://objects/scenes/room/bar_room/bar_room.tscn" id="4_hq55o"]
+[ext_resource type="PackedScene" uid="uid://b1dy56fgk4a7o" path="res://objects/scenes/room/boos_room/boos_room.tscn" id="5_nbftc"]
+
+[node name="stage" type="Node2D" unique_id=2111426621]
+position = Vector2(553, 291)
+script = ExtResource("1_nhgda")
+MonsterRoomScene = ExtResource("2_6pas0")
+ChestRoomScene = ExtResource("3_8unbk")
+BarRoomScene = ExtResource("4_hq55o")
+BossRoomScene = ExtResource("5_nbftc")
+StartRoomScene = ExtResource("2_6pas0")
+CellSpacing = 0.0
+
+[node name="room" parent="." unique_id=1877895239 instance=ExtResource("2_6pas0")]
+visible = false
+position = Vector2(324, -194)

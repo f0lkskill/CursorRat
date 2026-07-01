@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b8bxjunrxeqje"]
+
+[ext_resource type="Texture2D" uid="uid://b75b1h61vwbhp" path="res://assets/room/rock_cheast_room.png" id="1_deasy"]
+
+[node name="cheast_room" type="Node2D" unique_id=429805627]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1535992854]
+texture = ExtResource("1_deasy")
