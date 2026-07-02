@@ -27,6 +27,7 @@ gradient = SubResource("Gradient_pkkib")
 polygon = PackedVector2Array(-1238, -1107, -1206, 1060, 1223, 1071, 1221, -1096)
 
 [node name="MainScene" type="Node2D" unique_id=352933808]
+position = Vector2(181, -36)
 script = ExtResource("1_vp7dn")
 EnemyScenes = Array[PackedScene]([ExtResource("1_pkkib")])
 
@@ -60,6 +61,7 @@ position = Vector2(3, -1730)
 [node name="player" parent="." unique_id=163287506 instance=ExtResource("3_pkkib")]
 position = Vector2(-557, 136)
 Speed = 1000.0
+KnockbackStrength = 50.0
 
 [node name="enemies" type="Node2D" parent="." unique_id=956815377]
 

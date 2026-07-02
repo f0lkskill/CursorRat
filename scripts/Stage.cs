@@ -28,7 +28,7 @@ public partial class Stage : Node2D
 	}
 
 	//房间数组[0]空 [1]怪物房间 [2]箱子房间 [3]酒吧房间 [4]Boss房间 [5]初始房间(空房间)
-    int[,] Room = new int[7, 7];
+    public int[,] Room = new int[7, 7];
     // 创建 Random 实例
     Random random = new Random();
     private struct MapBlock
@@ -195,6 +195,10 @@ public partial class Stage : Node2D
                     if (roomInstance.HasMethod("Initialize"))
                     {
                         roomInstance.Call("Initialize", roomType, x, y);
+                    }
+                    if (roomInstance is Room room)
+                    {
+                        room.SetGridPosition(x, y);//设置数组的位置
                     }
                 }
             }
