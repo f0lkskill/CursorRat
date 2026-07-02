@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class base_life : Node
+public partial class base_life : Node2D
 {
     [Export]
 	public float Speed = 100.0f;
@@ -85,7 +85,7 @@ public partial class base_life : Node
 
     /// 通用受伤入口：无敌期间直接返回 false；否则扣血并施加击退。
     /// damage = 0 时不扣血，但仍然施加击退（用于敌人接触玩家时的反向推开）。
-    public bool TakeHit(Node attacker, int damage)
+    public bool TakeHit(Node attacker, float damage)
     {
         if (_invincibleTimer > 0.0f) return false;
 
