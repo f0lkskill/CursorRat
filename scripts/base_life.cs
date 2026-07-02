@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class base_life : Node
+public partial class base_life : Node2D
 {
     [Export]
 	public float Speed = 100.0f;
@@ -16,6 +16,11 @@ public partial class base_life : Node
 
     [Export]
     public float KnockbackDuration = 0.25f;
+
+    [Export]
+    public float texture_scale = 1.0f;
+    [Export]
+    public Vector2 offset = Vector2.Zero;
 
     // 节点
     public CharacterBody2D body;
@@ -36,6 +41,10 @@ public partial class base_life : Node
         // 初始化健康条
         health_bar.Value = HealthManager.Health;
         health_bar.MaxValue = HealthManager.MaxHealth;
+
+        AnimatedSprite2D sprite = body.GetNode<AnimatedSprite2D>("sprite");
+        sprite.Scale = new Vector2(texture_scale, texture_scale);
+        sprite.Offset = offset;
     }
 
     public override void _Process(double delta)
@@ -76,7 +85,7 @@ public partial class base_life : Node
 
     /// 通用受伤入口：无敌期间直接返回 false；否则扣血并施加击退。
     /// damage = 0 时不扣血，但仍然施加击退（用于敌人接触玩家时的反向推开）。
-    public bool TakeHit(Node attacker, int damage)
+    public bool TakeHit(Node attacker, float damage)
     {
         if (_invincibleTimer > 0.0f) return false;
 

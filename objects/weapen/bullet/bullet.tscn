@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bn2cwnepf0bgw"]
+
+[ext_resource type="Script" uid="uid://hev2cjd40cwq" path="res://scripts/weapen/bullet/bullet.cs" id="1_uogdq"]
+[ext_resource type="PackedScene" uid="uid://dhr351j8qpskc" path="res://objects/weapen/bullet/base_bullet.tscn" id="2_dxr5j"]
+
+[node name="bullet" type="Node2D" unique_id=194234244]
+script = ExtResource("1_uogdq")
+
+[node name="base_bullet" parent="." unique_id=923443739 instance=ExtResource("2_dxr5j")]
