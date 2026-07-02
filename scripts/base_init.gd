@@ -27,6 +27,8 @@ func _get_sprite_offset() -> Vector2:
 
 func _ready() -> void:
 	_update_shapes()
+	# sprite.scale = Vector2(texture_scale, texture_scale)
+	# sprite.offset = offset
 
 func _process(delta: float) -> void:
 	# 检测AnimatedSprite2D的帧变化，动态更新碰撞

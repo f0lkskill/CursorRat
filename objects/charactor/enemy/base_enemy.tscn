@@ -24,8 +24,6 @@ animations = [{
 [node name="health_bar" parent="." unique_id=1090233696 instance=ExtResource("3_vviut")]
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=72786469]
-position = Vector2(-8.000001, -39)
-scale = Vector2(0.43495753, 0.47325873)
 sprite_frames = SubResource("SpriteFrames_wvhbo")
 
 [node name="shape" type="CollisionShape2D" parent="." unique_id=1761263628]

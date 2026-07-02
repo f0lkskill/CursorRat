@@ -17,6 +17,11 @@ public partial class base_life : Node
     [Export]
     public float KnockbackDuration = 0.25f;
 
+    [Export]
+    public float texture_scale = 1.0f;
+    [Export]
+    public Vector2 offset = Vector2.Zero;
+
     // 节点
     public CharacterBody2D body;
     public TextureProgressBar health_bar;
@@ -36,6 +41,10 @@ public partial class base_life : Node
         // 初始化健康条
         health_bar.Value = HealthManager.Health;
         health_bar.MaxValue = HealthManager.MaxHealth;
+
+        AnimatedSprite2D sprite = body.GetNode<AnimatedSprite2D>("sprite");
+        sprite.Scale = new Vector2(texture_scale, texture_scale);
+        sprite.Offset = offset;
     }
 
     public override void _Process(double delta)

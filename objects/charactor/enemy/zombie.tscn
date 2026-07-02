@@ -8,6 +8,8 @@
 [node name="zombie" type="Node2D" unique_id=349148583 node_paths=PackedStringArray("HealthManager")]
 script = ExtResource("1_x3ihl")
 HealthManager = NodePath("body/base_health")
+texture_scale = 0.5
+offset = Vector2(-10, -90)
 
 [node name="body" parent="." unique_id=165994402 instance=ExtResource("2_5qex4")]
 
