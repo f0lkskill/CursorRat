@@ -4,6 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://bere6gd76aftw" path="res://objects/ui/health_bar.tscn" id="3_k05ig"]
 [ext_resource type="Texture2D" uid="uid://cw3kw4c42jbbv" path="res://icon.svg" id="3_r02lg"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_wvhbo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_r02lg")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rpcek"]
 
 [node name="player" type="CharacterBody2D" unique_id=165994402]
@@ -12,8 +23,8 @@
 
 [node name="health_bar" parent="." unique_id=1090233696 instance=ExtResource("3_k05ig")]
 
-[node name="sprite" type="Sprite2D" parent="." unique_id=1173546242]
-texture = ExtResource("3_r02lg")
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1367440394]
+sprite_frames = SubResource("SpriteFrames_wvhbo")
 
 [node name="shape" type="CollisionShape2D" parent="." unique_id=1761263628]
 
