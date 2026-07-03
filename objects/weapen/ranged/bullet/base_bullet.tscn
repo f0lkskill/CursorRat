@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://dhr351j8qpskc"]
 
 [ext_resource type="PackedScene" uid="uid://bjgxukm7h72y1" path="res://objects/tools/init.tscn" id="1_co0fp"]
-[ext_resource type="Texture2D" uid="uid://cw3kw4c42jbbv" path="res://icon.svg" id="2_nr2ut"]
+[ext_resource type="Texture2D" uid="uid://cjf2d277nmlpu" path="res://assets/charactor/process_back.png" id="2_co0fp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n01b3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_nr2ut")
+"texture": ExtResource("2_co0fp")
 }],
 "loop": 1,
 "name": &"default",

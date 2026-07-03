@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c2hvnhq8le70e"]
+
+[ext_resource type="Script" uid="uid://oc0amde7awpm" path="res://scripts/weapen/melee/knife.cs" id="1_28kqt"]
+[ext_resource type="PackedScene" uid="uid://v43mof46du2n" path="res://objects/weapen/melee/base_melee.tscn" id="1_82fie"]
+
+[node name="knife" type="Node2D" unique_id=1248791426]
+script = ExtResource("1_28kqt")
+auto_swing = true
+swing_duration = 0.15
+swing_range = null
+swing_arc_degrees = null
+swing_knockback = 180.0
+is_object = true
+
+[node name="body" parent="." unique_id=358912040 instance=ExtResource("1_82fie")]

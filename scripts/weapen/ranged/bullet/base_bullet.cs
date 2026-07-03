@@ -42,8 +42,8 @@ public partial class base_bullet : base_life
         base_enemy enemy = FindParentOfType<base_enemy>(collider);
         if (enemy != null)
         {
-            TakeHit(enemy, Damage);
+            enemy.TakeHit(this, Damage);
+            QueueFree();
         }
-        QueueFree();
     }
 }

@@ -8,6 +8,7 @@
 
 [node name="stage" type="Node2D" unique_id=2111426621]
 position = Vector2(553, 291)
+scale = Vector2(2, 2)
 script = ExtResource("1_nhgda")
 MonsterRoomScene = ExtResource("2_6pas0")
 ChestRoomScene = ExtResource("3_8unbk")

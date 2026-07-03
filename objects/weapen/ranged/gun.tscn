@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dqthwvmhm6h3v"]
+
+[ext_resource type="Script" uid="uid://bwpb6ud4if5p7" path="res://scripts/weapen/ranged/gun.cs" id="1_squ7s"]
+[ext_resource type="PackedScene" uid="uid://bn2cwnepf0bgw" path="res://objects/weapen/ranged/bullet/bullet.tscn" id="2_ubds5"]
+[ext_resource type="PackedScene" uid="uid://ctjhb82yxasfk" path="res://objects/weapen/ranged/base_ranged.tscn" id="3_squ7s"]
+
+[node name="gun" type="Node2D" unique_id=1033862369]
+script = ExtResource("1_squ7s")
+bullet_scene = ExtResource("2_ubds5")
+auto_fire = true
+is_object = true
+
+[node name="body" parent="." unique_id=358912040 instance=ExtResource("3_squ7s")]

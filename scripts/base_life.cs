@@ -21,6 +21,8 @@ public partial class base_life : Node2D
     public float texture_scale = 1.0f;
     [Export]
     public Vector2 offset = Vector2.Zero;
+    [Export]
+    public bool is_object = false;
 
     // 节点
     public CharacterBody2D body;
@@ -34,13 +36,19 @@ public partial class base_life : Node2D
 
     public override void _Ready()
     {
+        base._Ready();
+
         // 获取节点
         body = GetNode<CharacterBody2D>("body");
-        health_bar = body.GetNode<TextureProgressBar>("health_bar");
 
-        // 初始化健康条
-        health_bar.Value = HealthManager.Health;
-        health_bar.MaxValue = HealthManager.MaxHealth;
+        if (!is_object)
+        {        
+            health_bar = body.GetNode<TextureProgressBar>("health_bar");
+
+            // 初始化健康条
+            health_bar.Value = HealthManager.Health;
+            health_bar.MaxValue = HealthManager.MaxHealth;
+        }
 
         AnimatedSprite2D sprite = body.GetNode<AnimatedSprite2D>("sprite");
         sprite.Scale = new Vector2(texture_scale, texture_scale);
@@ -49,11 +57,15 @@ public partial class base_life : Node2D
 
     public override void _Process(double delta)
     {
+        base._Process(delta);
+
+        if (is_object) return;
         // 更新健康条
         health_bar.Value = HealthManager.Health;
         if (!HealthManager.IsAlive())
         {
-            body.Hide();
+            // body.Hide();
+            QueueFree();
         }
     }
 
@@ -87,6 +99,7 @@ public partial class base_life : Node2D
     /// damage = 0 时不扣血，但仍然施加击退（用于敌人接触玩家时的反向推开）。
     public bool TakeHit(Node attacker, float damage)
     {
+        // GD.PrintRaw($"TakeHit: {damage}");
         if (_invincibleTimer > 0.0f) return false;
 
         // 有伤害时才扣血并设置较长无敌；纯击退时用较短的“推开冷却”，避免卡住不动

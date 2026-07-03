@@ -32,7 +32,7 @@ sprite_frames = SubResource("SpriteFrames_wvhbo")
 occluder = SubResource("OccluderPolygon2D_rpcek")
 
 [node name="camera" type="Camera2D" parent="." unique_id=354427276]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 rotation_smoothing_enabled = true

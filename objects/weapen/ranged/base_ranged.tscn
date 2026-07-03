@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://v43mof46du2n"]
+[gd_scene format=3 uid="uid://ctjhb82yxasfk"]
 
 [ext_resource type="PackedScene" uid="uid://bjgxukm7h72y1" path="res://objects/tools/init.tscn" id="1_hwors"]
 [ext_resource type="Texture2D" uid="uid://cw3kw4c42jbbv" path="res://icon.svg" id="2_l1s6l"]
@@ -16,7 +16,7 @@ animations = [{
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vvrfa"]
 
-[node name="base_gun" type="CharacterBody2D" unique_id=358912040]
+[node name="base_ranged" type="CharacterBody2D" unique_id=358912040]
 
 [node name="init" parent="." unique_id=2120728096 instance=ExtResource("1_hwors")]
 
@@ -27,5 +27,3 @@ sprite_frames = SubResource("SpriteFrames_xi3mq")
 
 [node name="light_occluder" type="LightOccluder2D" parent="." unique_id=1079869485]
 occluder = SubResource("OccluderPolygon2D_vvrfa")
-
-[node name="Node2D" type="Node2D" parent="." unique_id=591900444]

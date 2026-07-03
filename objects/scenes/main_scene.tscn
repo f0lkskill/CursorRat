@@ -18,7 +18,7 @@ fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_pkkib"]
-colors = PackedColorArray(0.32941177, 0.32941177, 0.32941177, 1, 0.32915837, 0.3291584, 0.32915837, 1)
+colors = PackedColorArray(0.23838821, 2.810836e-05, 0.91752845, 0.43529412, 0.32915837, 0.3291584, 0.32915837, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_vp7dn"]
 gradient = SubResource("Gradient_pkkib")
@@ -44,22 +44,23 @@ texture = SubResource("GradientTexture2D_pkkib")
 texture_scale = 4.82
 
 [node name="back_ground" type="TextureRect" parent="." unique_id=681356409]
-offset_left = -1173.0
-offset_top = -659.0
-offset_right = 1065.0
-offset_bottom = 998.0
+offset_left = -1067.0
+offset_top = -853.0
+offset_right = 1171.0
+offset_bottom = 804.0
 texture = SubResource("GradientTexture1D_vp7dn")
 
 [node name="light_occluder" type="LightOccluder2D" parent="back_ground" unique_id=2130775952]
 visible = false
-position = Vector2(413, 302)
+position = Vector2(1010, 490)
 occluder = SubResource("OccluderPolygon2D_xjunv")
 
 [node name="stage" parent="." unique_id=2111426621 instance=ExtResource("3_kf3xu")]
 position = Vector2(3, -1730)
+scale = Vector2(4, 4)
 
 [node name="player" parent="." unique_id=163287506 instance=ExtResource("3_pkkib")]
-position = Vector2(-557, 136)
+position = Vector2(-555, 143)
 Speed = 1000.0
 KnockbackStrength = 50.0
 

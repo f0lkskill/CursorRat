@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dnyomceja2cy7" path="res://objects/charactor/player.tscn" id="1_iq5em"]
 [ext_resource type="Script" uid="uid://54by2c8p1jpm" path="res://scripts/base_health.cs" id="3_77u6o"]
 [ext_resource type="PackedScene" uid="uid://c8a4tl1saryqm" path="res://objects/tools/heal_label.tscn" id="4_8tits"]
+[ext_resource type="PackedScene" uid="uid://dqthwvmhm6h3v" path="res://objects/weapen/ranged/gun.tscn" id="5_pxg0p"]
 
 [node name="player" type="Node2D" unique_id=163287506 node_paths=PackedStringArray("HealthManager")]
 script = ExtResource("1_bd8et")
@@ -12,6 +13,14 @@ KnockbackStrength = 400.0
 
 [node name="body" parent="." unique_id=165994402 instance=ExtResource("1_iq5em")]
 
+[node name="gun" parent="body" unique_id=1033862369 instance=ExtResource("5_pxg0p")]
+position = Vector2(134, -130)
+bullet_speed = 1000.0
+bullet_damage = 20.0
+bullet_life_time = 5.0
+
 [node name="base_health" type="Node2D" parent="body" unique_id=1726132094]
 script = ExtResource("3_77u6o")
+Health = 1000.0
+MaxHealth = 1000.0
 heal_label_scene = ExtResource("4_8tits")
