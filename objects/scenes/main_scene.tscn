@@ -56,16 +56,18 @@ position = Vector2(413, 302)
 occluder = SubResource("OccluderPolygon2D_xjunv")
 
 [node name="stage" parent="." unique_id=2111426621 instance=ExtResource("3_kf3xu")]
-position = Vector2(3, -1730)
+position = Vector2(-181, 36)
 
 [node name="player" parent="." unique_id=163287506 instance=ExtResource("3_pkkib")]
-position = Vector2(-557, 136)
-Speed = 1000.0
+position = Vector2(-144, 57.000008)
+scale = Vector2(0.1, 0.1)
+Speed = 300.0
 KnockbackStrength = 50.0
 
 [node name="enemies" type="Node2D" parent="." unique_id=956815377]
 
 [node name="obstacles" type="Node2D" parent="." unique_id=172103438]
+position = Vector2(1845, -109)
 
 [node name="BaseObstacle" parent="obstacles" unique_id=2102120021 instance=ExtResource("2_xjunv")]
 position = Vector2(3, 157)

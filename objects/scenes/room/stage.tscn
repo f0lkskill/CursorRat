@@ -15,7 +15,3 @@ BarRoomScene = ExtResource("4_hq55o")
 BossRoomScene = ExtResource("5_nbftc")
 StartRoomScene = ExtResource("2_6pas0")
 CellSpacing = 0.0
-
-[node name="room" parent="." unique_id=1877895239 instance=ExtResource("2_6pas0")]
-visible = false
-position = Vector2(324, -194)
