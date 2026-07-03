@@ -1,8 +1,110 @@
 [gd_scene format=3 uid="uid://b8bxjunrxeqje"]
 
+[ext_resource type="Script" uid="uid://cjsdnfqfmlyqy" path="res://scripts/CheastRoom.cs" id="1_75eon"]
 [ext_resource type="Texture2D" uid="uid://b75b1h61vwbhp" path="res://assets/room/rock_cheast_room.png" id="1_deasy"]
+[ext_resource type="PackedScene" uid="uid://bk6wp1lvqpl1y" path="res://objects/scenes/room/door/door.tscn" id="2_lxow3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxow3"]
+size = Vector2(468.5, 312)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6cluw"]
+size = Vector2(46, 19.625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_paylh"]
+size = Vector2(26, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qidki"]
+size = Vector2(49, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3evk"]
+size = Vector2(47, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb8sg"]
+size = Vector2(31.5, 50.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gx4qa"]
+size = Vector2(32, 51)
 
 [node name="cheast_room" type="Node2D" unique_id=429805627]
+script = ExtResource("1_75eon")
+TpY = 100
+TpX = 100
+Door = ExtResource("2_lxow3")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1535992854]
+[node name="sprite" type="Sprite2D" parent="." unique_id=1535992854]
 texture = ExtResource("1_deasy")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1997718517]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1640091293]
+position = Vector2(-0.25, 0)
+shape = SubResource("RectangleShape2D_lxow3")
+debug_color = Color(0, 0.63529414, 0.23137255, 0.41960785)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=585747692]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=950375681]
+polygon = PackedVector2Array(23, -105, 23, -134, -23, -134, -23, -104, -182, -105, -182, -24, -215, -24, -215, 23, -183, 23, -183, 106, -234, 157, -234, -155, 233, -155, 232, 155, -236, 157, -183, 106, -22, 106, -22, 137, 24, 137, 24, 105, 183, 105, 183, 27, 215, 27, 215, -22, 183, -22, 183, -106)
+
+[node name="up" type="Area2D" parent="." unique_id=437150214]
+
+[node name="up" type="CollisionShape2D" parent="up" unique_id=1591883320]
+position = Vector2(0, -123.8125)
+shape = SubResource("RectangleShape2D_6cluw")
+debug_color = Color(0.7360364, 0.23532286, 0.54752326, 0.41960785)
+
+[node name="down" type="Area2D" parent="." unique_id=868053745]
+
+[node name="down" type="CollisionShape2D" parent="down" unique_id=874046980]
+position = Vector2(1, 126.375)
+shape = SubResource("RectangleShape2D_6cluw")
+debug_color = Color(0.7214175, 0.32981065, 0.87363863, 0.41960785)
+
+[node name="left" type="Area2D" parent="." unique_id=111774488]
+
+[node name="left" type="CollisionShape2D" parent="left" unique_id=480252843]
+position = Vector2(-202, -1)
+shape = SubResource("RectangleShape2D_paylh")
+debug_color = Color(0.79308873, 0.31655934, 0.7288022, 0.41960785)
+
+[node name="right" type="Area2D" parent="." unique_id=1363692367]
+
+[node name="right" type="CollisionShape2D" parent="right" unique_id=1448472032]
+position = Vector2(202, 3)
+shape = SubResource("RectangleShape2D_paylh")
+debug_color = Color(0.688797, 0.39843136, 0.7768509, 0.41960785)
+
+[node name="up2" type="StaticBody2D" parent="." unique_id=167804612]
+position = Vector2(0, -123)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="up2" unique_id=1713689701]
+position = Vector2(0.5, 4)
+shape = SubResource("RectangleShape2D_qidki")
+
+[node name="down2" type="StaticBody2D" parent="." unique_id=1260360867]
+position = Vector2(1, 121)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="down2" unique_id=260177712]
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_e3evk")
+
+[node name="left2" type="StaticBody2D" parent="." unique_id=1086692113]
+position = Vector2(-202, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left2" unique_id=940416525]
+position = Vector2(3.25, 1.75)
+shape = SubResource("RectangleShape2D_wb8sg")
+
+[node name="right2" type="StaticBody2D" parent="." unique_id=459150360]
+position = Vector2(203, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right2" unique_id=1560895434]
+position = Vector2(-4, 2.5)
+shape = SubResource("RectangleShape2D_gx4qa")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="up" to="." method="_on_up_body_entered_up"]
+[connection signal="body_entered" from="down" to="." method="_on_down_body_entered_down"]
+[connection signal="body_entered" from="left" to="." method="_on_left_body_entered_left"]
+[connection signal="body_entered" from="right" to="." method="_on_right_body_entered_right"]

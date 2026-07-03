@@ -18,6 +18,7 @@ animations = [{
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rpcek"]
 
 [node name="player" type="CharacterBody2D" unique_id=165994402]
+position = Vector2(-1003, 625)
 
 [node name="init" parent="." unique_id=2120728096 instance=ExtResource("2_j6tlk")]
 
@@ -30,6 +31,7 @@ sprite_frames = SubResource("SpriteFrames_wvhbo")
 
 [node name="light_occluder" type="LightOccluder2D" parent="." unique_id=712406247]
 occluder = SubResource("OccluderPolygon2D_rpcek")
+<<<<<<< HEAD
 
 [node name="camera" type="Camera2D" parent="." unique_id=354427276]
 zoom = Vector2(0.5, 0.5)
@@ -37,3 +39,5 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 10.0
+=======
+>>>>>>> cd019b6540e9ed1183073c8a99144626a2548847

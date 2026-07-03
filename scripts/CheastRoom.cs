@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class Room : Node2D
+public partial class CheastRoom : Node2D
 {
 
     public int RoomType { get; set; }
@@ -43,16 +43,16 @@ public partial class Room : Node2D
 
     public override void _Ready()
     {
-       
-       // GD.Print($"Room [{GridX}, {GridY}] _Ready 被调用");
 
-      
+        // GD.Print($"Room [{GridX}, {GridY}] _Ready 被调用");
+
+
 
         // 获取 Sprite2D
         roomSprite = GetNodeOrNull<Sprite2D>("sprite");
         roomSprite.Visible = false;
 
-      
+
 
     }
 
@@ -277,11 +277,11 @@ public partial class Room : Node2D
 
         // 选择较小的缩放值，确保整个纹理可见（保持宽高比）
         float scale = Mathf.Min(scaleX, scaleY);
-       
+
         // 应用缩放
         camera.Zoom = Vector2.One * scale;
 
-       // GD.Print($"纹理尺寸: {textureSize}, 视口尺寸: {viewportSize}, 应用缩放: {scale}");
+        // GD.Print($"纹理尺寸: {textureSize}, 视口尺寸: {viewportSize}, 应用缩放: {scale}");
     }
 
 

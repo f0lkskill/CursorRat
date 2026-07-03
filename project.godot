@@ -15,6 +15,11 @@ run/main_scene="uid://cum2yp0xq8clr"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1000
+window/size/viewport_height=624
+
 [dotnet]
 
 project/assembly_name="CursoRat_A.side"
