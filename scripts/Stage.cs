@@ -13,6 +13,7 @@ public partial class Stage : Node2D
     [Export] public PackedScene StartRoomScene { get; set; }    // 初始房间
     [Export] public float CellSpacing { get; set; } = 10f; // 房间之间的间距
 
+    private  Vector2 StartPlace = new Vector2(0,0);
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
@@ -20,6 +21,7 @@ public partial class Stage : Node2D
         //房间生成
         InitRoom();
         SpawnRooms();
+      
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,6 +31,7 @@ public partial class Stage : Node2D
 
 	//房间数组[0]空 [1]怪物房间 [2]箱子房间 [3]酒吧房间 [4]Boss房间 [5]初始房间(空房间)
     public int[,] Room = new int[7, 7];
+    public Vector2[,] RoomGlobalPlace = new Vector2[7, 7];
     // 创建 Random 实例
     Random random = new Random();
     private struct MapBlock
@@ -138,15 +141,7 @@ public partial class Stage : Node2D
         Room[CheastPlace.x, CheastPlace.y] = 2;//宝箱房间
         Room[3, 3] = 5;//初始房间
 
-        //输出结果
-        for (int i = 0; i < 7; i++)
-        {
-            for(int j = 0; j < 7; j++)
-            {
-                GD.PrintRaw(Room[i,j]);
-            }
-            GD.PrintRaw("\n");
-        }
+     
     }
 
     //生成房间
@@ -258,6 +253,7 @@ public partial class Stage : Node2D
             }
         }
 
+       
         // 设置每个房间的位置（居中放置在格子中）
         for (int x = 0; x < 7; x++)
         {
@@ -271,20 +267,30 @@ public partial class Stage : Node2D
                     float xOffset = (columnWidths[x] - roomSize.X) / 2;
                     float yOffset = (rowHeights[y] - roomSize.Y) / 2;
 
-                    roomInstances[x, y].Position = new Vector2(
+                    Vector2 localPosition = new Vector2(
                         xPositions[x] + xOffset,
                         yPositions[y] + yOffset
                     );
+
+                    roomInstances[x, y].Position = localPosition;
+
+                    // 获取房间的全局居中坐标
+                    Vector2 worldPos = roomInstances[x, y].GlobalPosition;
+                    
+                    RoomGlobalPlace[x,y] = worldPos;
+                    if ((x == 3) && (y == 3))
+                    {
+                        StartPlace = roomInstances[x, y].GlobalPosition;
+                    }
                 }
             }
         }
 
-        // 可选：居中整个地图
-        float totalWidth = currentX - CellSpacing;
-        float totalHeight = currentY - CellSpacing;
-        roomsContainer.Position = new Vector2(-totalWidth / 2, -totalHeight / 2);
-
-        GD.Print($"房间生成完成！共生成了 {roomsContainer.GetChildCount()} 个房间");
+        var playerNode = GetNode<player>("../player");
+        
+    
+    //传送玩家
+        playerNode.GlobalPosition = StartPlace;
     }
 
     // 获取 Sprite2D 的实际尺寸

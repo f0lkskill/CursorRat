@@ -27,8 +27,8 @@ size = Vector2(32, 51)
 
 [node name="boos_room" type="Node2D" unique_id=505015484]
 script = ExtResource("1_aydxp")
-TpY = 100
-TpX = 100
+DoorPlace = PackedVector2Array(0, -121, 0, 121, -198, 0, 198, 0)
+TpPlace = PackedVector2Array(0, -80, 0, 80, -140, 0, 140, 0)
 Door = ExtResource("2_pl07c")
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=1580844816]

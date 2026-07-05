@@ -45,6 +45,7 @@ public partial class player : base_life
     public override void _Process(double delta)
     {
         base._Process(delta);
+       
     }
 
     public void CollisionChecked(Node collider)
