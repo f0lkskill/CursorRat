@@ -2,18 +2,22 @@
 
 [ext_resource type="Script" uid="uid://15euk0egu6ur" path="res://scripts/enemy/zombie/zombie.cs" id="1_x3ihl"]
 [ext_resource type="PackedScene" uid="uid://dav1l17vgn48a" path="res://objects/charactor/enemy/base_enemy.tscn" id="2_5qex4"]
-[ext_resource type="Script" uid="uid://54by2c8p1jpm" path="res://scripts/base_health.cs" id="3_5qex4"]
-[ext_resource type="PackedScene" uid="uid://c8a4tl1saryqm" path="res://objects/tools/heal_label.tscn" id="4_onsdp"]
+[ext_resource type="PackedScene" uid="uid://c8a4tl1saryqm" path="res://objects/tools/heal_label.tscn" id="2_onsdp"]
+[ext_resource type="Script" uid="uid://dpv6l04d5lsdg" path="res://scripts/res/base_health.cs" id="3_jk445"]
 
-[node name="zombie" type="Node2D" unique_id=349148583 node_paths=PackedStringArray("HealthManager")]
+[sub_resource type="Resource" id="Resource_qa6pn"]
+script = ExtResource("3_jk445")
+Health = 1000.0
+MaxHealth = 1000.0
+heal_label_scene = ExtResource("2_onsdp")
+
+[node name="zombie" type="Node2D" unique_id=349148583]
 script = ExtResource("1_x3ihl")
-HealthManager = NodePath("body/base_health")
-texture_scale = 0.5
+HealthManager = SubResource("Resource_qa6pn")
+KnockbackStrength = 10.0
 offset = Vector2(-10, -90)
+texture_scale = 0.5
 
 [node name="body" parent="." unique_id=165994402 instance=ExtResource("2_5qex4")]
-
-[node name="base_health" type="Node2D" parent="body" unique_id=1353650310]
-position = Vector2(-198, 200)
-script = ExtResource("3_5qex4")
-heal_label_scene = ExtResource("4_onsdp")
+collision_layer = 7
+collision_mask = 3

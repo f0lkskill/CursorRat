@@ -40,10 +40,9 @@ public partial class spawn : Node2D
            // 防御性: AddChild 后 base_life._Ready 应该已执行, body 已初始化
            if (enemy.body != null)
            {
-               enemy.body.GlobalPosition = new Vector2(GD.RandRange(-500, 500), GD.RandRange(-500, 500));
+               enemy.body.GlobalPosition = new Vector2(GD.RandRange(-1000, 1000), GD.RandRange(-1000, 1000));
            }
            enemy.PlayerManager = player;
-           enemy.Speed = 500.0f;
         }
     }
 }

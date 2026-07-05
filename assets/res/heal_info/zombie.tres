@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://djk3t1qae266o"]
+
+[ext_resource type="PackedScene" uid="uid://c8a4tl1saryqm" path="res://objects/tools/heal_label.tscn" id="1_d0a4m"]
+[ext_resource type="Script" uid="uid://dpv6l04d5lsdg" path="res://scripts/res/base_health.cs" id="2_4t8bc"]
+
+[resource]
+script = ExtResource("2_4t8bc")
+heal_label_scene = ExtResource("1_d0a4m")

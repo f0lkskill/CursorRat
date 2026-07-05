@@ -4,9 +4,9 @@ using System;
 public partial class base_life : Node2D
 {
     [Export]
-	public float Speed = 100.0f;
-    [Export]
     public base_health HealthManager;
+    [Export]
+	public float Speed = 100.0f;
 
     [Export]
     public float InvincibleDuration = 0.8f;
@@ -18,9 +18,9 @@ public partial class base_life : Node2D
     public float KnockbackDuration = 0.25f;
 
     [Export]
-    public float texture_scale = 1.0f;
-    [Export]
     public Vector2 offset = Vector2.Zero;
+    [Export]
+    public float texture_scale = 1.0f;
     [Export]
     public bool is_object = false;
 
@@ -29,7 +29,7 @@ public partial class base_life : Node2D
     public TextureProgressBar health_bar;
 
     // 击退与无敌时间
-    protected float _invincibleTimer = 0.0f;
+    public float _invincibleTimer = 0.0f;
     protected Vector2 _knockbackVelocity = Vector2.Zero;
     protected float _knockbackTimer = 0.0f;
     protected float _knockbackDecay = 10.0f;
@@ -41,8 +41,18 @@ public partial class base_life : Node2D
         // 获取节点
         body = GetNode<CharacterBody2D>("body");
 
+
         if (!is_object)
         {        
+            // 重置健康值
+            base_health temp_health = new base_health();
+
+            temp_health.MaxHealth = HealthManager.MaxHealth;
+            temp_health.heal_label_scene = HealthManager.heal_label_scene;
+
+            temp_health.Health = temp_health.MaxHealth;
+            HealthManager = temp_health;
+
             health_bar = body.GetNode<TextureProgressBar>("health_bar");
 
             // 初始化健康条
@@ -97,7 +107,7 @@ public partial class base_life : Node2D
 
     /// 通用受伤入口：无敌期间直接返回 false；否则扣血并施加击退。
     /// damage = 0 时不扣血，但仍然施加击退（用于敌人接触玩家时的反向推开）。
-    public bool TakeHit(Node attacker, float damage)
+    public bool TakeHit(Node attacker, float damage, bool enableKnockback = true)
     {
         // GD.PrintRaw($"TakeHit: {damage}");
         if (_invincibleTimer > 0.0f) return false;
@@ -106,7 +116,7 @@ public partial class base_life : Node2D
         if (damage > 0)
         {
             if (HealthManager == null) return false;
-            HealthManager.TakeDamage(damage);
+            HealthManager.TakeDamage(damage, body);
             _invincibleTimer = InvincibleDuration;
         }
         else
@@ -127,8 +137,16 @@ public partial class base_life : Node2D
                 knockbackDir = Vector2.Up;
             }
 
-            _knockbackVelocity = knockbackDir * KnockbackStrength;
-            _knockbackTimer = KnockbackDuration;
+            if (enableKnockback)
+            {
+                knockbackDir = knockbackDir * KnockbackStrength;
+            }
+
+            if (enableKnockback)
+            {
+                _knockbackVelocity = knockbackDir;
+                _knockbackTimer = KnockbackDuration;
+            }
         }
 
         return true;

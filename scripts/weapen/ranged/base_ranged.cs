@@ -1,11 +1,10 @@
 using Godot;
 using System;
 
-public partial class base_ranged : base_life
+public partial class base_ranged : base_weapon
 {
     [Export] public PackedScene bullet_scene;
     [Export] public float bullet_speed = 300.0f;
-    [Export] public float bullet_damage = 10.0f;
     [Export] public float bullet_life_time = 1.0f;
     [Export] public Vector2 target_position = Vector2.Zero;
     [Export] public bool auto_fire = false;
@@ -44,11 +43,11 @@ public partial class base_ranged : base_life
         Vector2 targetPos = target_position;
         Vector2 dir = (target_position - body.GlobalPosition).Normalized();
         base_bullet bullet = bullet_scene.Instantiate() as base_bullet;
-        GetParent().GetParent().AddChild(bullet);
+        GetParent().GetParent().GetParent().AddChild(bullet);
         bullet.Rotation = Mathf.Atan2(dir.Y, dir.X);
         bullet.Velocity = dir * bullet_speed;
         bullet.LifeTime = bullet_life_time;
-        bullet.Damage = bullet_damage;
+        bullet.Damage = damage;
         bullet.GlobalPosition = body.GlobalPosition + bullet_offset;
     }
 }

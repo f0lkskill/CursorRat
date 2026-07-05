@@ -9,3 +9,4 @@ is_object = true
 
 [node name="body" parent="." unique_id=923443739 instance=ExtResource("2_dxr5j")]
 collision_layer = 2
+collision_mask = 2

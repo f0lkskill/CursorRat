@@ -8,6 +8,7 @@ public partial class base_enemy : base_life
 
     public override void _PhysicsProcess(double delta)
     {
+        // GD.Print(Speed);
         // 公共: 处理击退/无敌计时
         UpdateInvincibilityAndKnockbackTimers(delta);
     }
@@ -24,12 +25,17 @@ public partial class base_enemy : base_life
             var collider = collision.GetCollider();
             if (collider is Node node)
             {
-                base_enemy otherEnemy = FindParentOfType<base_enemy>(node);
-                if (otherEnemy != null && otherEnemy != this)
+                player otherEnemy = FindParentOfType<player>(node);
+                if (otherEnemy != null)
                 {
                     // 以对方为"攻击者", TakeHit 会用位置差算出远离方向
                     TakeHit(otherEnemy, 0);
                 }
+            }
+            if (collider is base_melee)
+            {
+                base_melee new_base_melee = collider as base_melee;
+                TakeHit(new_base_melee, new_base_melee.damage);
             }
         }
     }

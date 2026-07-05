@@ -5,11 +5,17 @@
 
 [node name="knife" type="Node2D" unique_id=1248791426]
 script = ExtResource("1_28kqt")
-auto_swing = true
-swing_duration = 0.15
-swing_range = null
-swing_arc_degrees = null
-swing_knockback = 180.0
+offset = Vector2(100, 0)
+texture_scale = 0.7
 is_object = true
 
 [node name="body" parent="." unique_id=358912040 instance=ExtResource("1_82fie")]
+collision_layer = 0
+collision_mask = 0
+
+[node name="area" type="Area2D" parent="body" unique_id=1361840488]
+
+[node name="damage_coll" type="CollisionPolygon2D" parent="body/area" unique_id=1834538585]
+polygon = PackedVector2Array(-21, -70, -15, 191, 19, 159, 21, -78)
+
+[connection signal="body_entered" from="body/area" to="." method="CollisionChecked"]

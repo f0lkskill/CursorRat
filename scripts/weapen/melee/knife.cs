@@ -3,6 +3,8 @@ using System;
 
 public partial class knife : base_melee
 {
+    private Vector2 target_position;
+        
 	public override void _Ready()
     {
         base._Ready();

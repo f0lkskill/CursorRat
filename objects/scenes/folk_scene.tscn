@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c7fn3f48rbb4a"]
+
+[ext_resource type="Script" uid="uid://dwj6dwjuhn21b" path="res://scripts/spawn.cs" id="1_evsyi"]
+[ext_resource type="PackedScene" uid="uid://bhvsvwjhbmq2j" path="res://objects/charactor/player_manager.tscn" id="2_hgn6o"]
+[ext_resource type="PackedScene" uid="uid://d1d4up3uo0kbl" path="res://objects/charactor/enemy/zombie.tscn" id="2_j2vwa"]
+[ext_resource type="PackedScene" uid="uid://c8a4tl1saryqm" path="res://objects/tools/heal_label.tscn" id="4_iluna"]
+[ext_resource type="Script" uid="uid://dpv6l04d5lsdg" path="res://scripts/res/base_health.cs" id="5_ogdlc"]
+
+[sub_resource type="Resource" id="Resource_iluna"]
+script = ExtResource("5_ogdlc")
+Health = 10000.0
+MaxHealth = 10000.0
+heal_label_scene = ExtResource("4_iluna")
+
+[node name="FolkScene" type="Node2D" unique_id=205123725]
+script = ExtResource("1_evsyi")
+EnemyScenes = Array[PackedScene]([ExtResource("2_j2vwa")])
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1146618525]
+zoom = Vector2(0.3, 0.3)
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+
+[node name="player" parent="." unique_id=163287506 instance=ExtResource("2_hgn6o")]
+position = Vector2(0, -21)
+HealthManager = SubResource("Resource_iluna")
+KnockbackStrength = 50.0
+
+[node name="enemies" type="Node2D" parent="." unique_id=674527360]

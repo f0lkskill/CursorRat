@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://v43mof46du2n"]
 
 [ext_resource type="PackedScene" uid="uid://bjgxukm7h72y1" path="res://objects/tools/init.tscn" id="1_hwors"]
-[ext_resource type="Texture2D" uid="uid://cw3kw4c42jbbv" path="res://icon.svg" id="2_l1s6l"]
+[ext_resource type="Texture2D" uid="uid://cf11np12nohm3" path="res://assets/weapon/sword.png" id="2_30em5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xi3mq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_l1s6l")
+"texture": ExtResource("2_30em5")
 }],
 "loop": 1,
 "name": &"default",
