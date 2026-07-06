@@ -2,11 +2,26 @@
 
 [ext_resource type="Script" uid="uid://hev2cjd40cwq" path="res://scripts/weapen/ranged/bullet/bullet.cs" id="1_uogdq"]
 [ext_resource type="PackedScene" uid="uid://dhr351j8qpskc" path="res://objects/weapen/ranged/bullet/base_bullet.tscn" id="2_dxr5j"]
+[ext_resource type="Texture2D" uid="uid://cjf2d277nmlpu" path="res://assets/charactor/process_back.png" id="3_qome8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cbvhv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qome8")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="bullet" type="Node2D" unique_id=194234244]
 script = ExtResource("1_uogdq")
 is_object = true
 
 [node name="body" parent="." unique_id=923443739 instance=ExtResource("2_dxr5j")]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 4
+collision_mask = 4
+
+[node name="sprite" type="AnimatedSprite2D" parent="body" unique_id=732019861]
+sprite_frames = SubResource("SpriteFrames_cbvhv")
