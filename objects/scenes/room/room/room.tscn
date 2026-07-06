@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bntn8j1tihahj" path="res://scripts/Room.cs" id="1_sk65m"]
 [ext_resource type="Texture2D" uid="uid://bl7646pf8f8uo" path="res://assets/room/rock_room.png" id="2_vqr5h"]
+[ext_resource type="PackedScene" uid="uid://d1d4up3uo0kbl" path="res://objects/charactor/enemy/zombie.tscn" id="3_5w7hl"]
 [ext_resource type="PackedScene" uid="uid://bk6wp1lvqpl1y" path="res://objects/scenes/room/door/door.tscn" id="3_vqr5h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_igqou"]
@@ -29,7 +30,11 @@ size = Vector2(32, 51)
 script = ExtResource("1_sk65m")
 DoorPlace = PackedVector2Array(0, -121, 0, 121, -198, 0, 198, 0)
 TpPlace = PackedVector2Array(0, -80, 0, 80, -140, 0, 140, 0)
-Door = ExtResource("3_vqr5h")
+MonsterNum = Vector2(1, 2)
+SpawnPlaceNum = 2
+Door = Array[PackedScene]([ExtResource("3_vqr5h"), ExtResource("3_vqr5h"), ExtResource("3_vqr5h"), ExtResource("3_vqr5h")])
+MonsterScene = Array[PackedScene]([ExtResource("3_5w7hl")])
+MonsterPercent = PackedInt32Array(1)
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=558841734]
 texture = ExtResource("2_vqr5h")
@@ -104,7 +109,13 @@ position = Vector2(203, 1)
 position = Vector2(-4, 2.5)
 shape = SubResource("RectangleShape2D_xeyld")
 
-[node name="Spawn" type="Node2D" parent="." unique_id=968506265]
+[node name="1" type="Node2D" parent="." unique_id=512409462]
+position = Vector2(121, -59)
+scale = Vector2(0.2, 0.2)
+
+[node name="2" type="Node2D" parent="." unique_id=1503294534]
+position = Vector2(-130, -66)
+scale = Vector2(0.2, 0.2)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

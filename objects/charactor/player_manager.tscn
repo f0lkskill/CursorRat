@@ -2,15 +2,25 @@
 
 [ext_resource type="Script" uid="uid://csaitudo0b8nb" path="res://scripts/player.cs" id="1_bd8et"]
 [ext_resource type="PackedScene" uid="uid://dnyomceja2cy7" path="res://objects/charactor/player.tscn" id="1_iq5em"]
+[ext_resource type="Script" uid="uid://dpv6l04d5lsdg" path="res://scripts/res/base_health.cs" id="3_pxg0p"]
+[ext_resource type="PackedScene" uid="uid://c8a4tl1saryqm" path="res://objects/tools/heal_label.tscn" id="4_8tits"]
 [ext_resource type="Script" uid="uid://dknsojv27trp0" path="res://scripts/weapen/weapon_manager.cs" id="5_inktr"]
 [ext_resource type="PackedScene" uid="uid://dqthwvmhm6h3v" path="res://objects/weapen/ranged/gun.tscn" id="5_pxg0p"]
 [ext_resource type="PackedScene" uid="uid://c2hvnhq8le70e" path="res://objects/weapen/melee/knife.tscn" id="6_x24yt"]
 [ext_resource type="Texture2D" uid="uid://cjf2d277nmlpu" path="res://assets/charactor/process_back.png" id="8_a04t8"]
 
+[sub_resource type="Resource" id="Resource_x24yt"]
+script = ExtResource("3_pxg0p")
+Health = 10000.0
+MaxHealth = 10000.0
+heal_label_scene = ExtResource("4_8tits")
+
 [node name="player" type="Node2D" unique_id=163287506]
 script = ExtResource("1_bd8et")
+HealthManager = SubResource("Resource_x24yt")
 Speed = 1000.0
 KnockbackStrength = 400.0
+is_object = true
 
 [node name="body" parent="." unique_id=165994402 instance=ExtResource("1_iq5em")]
 
@@ -22,8 +32,8 @@ script = ExtResource("5_inktr")
 texture = ExtResource("8_a04t8")
 
 [node name="knife" parent="body/weapon" unique_id=1248791426 instance=ExtResource("6_x24yt")]
-texture_scale = 0.4
 offset = Vector2(0, 100)
+texture_scale = 0.4
 
 [node name="gun" parent="body/weapon" unique_id=1033862369 instance=ExtResource("5_pxg0p")]
 bullet_scene = null

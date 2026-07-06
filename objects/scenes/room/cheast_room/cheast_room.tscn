@@ -29,7 +29,7 @@ size = Vector2(32, 51)
 script = ExtResource("1_75eon")
 DoorPlace = PackedVector2Array(0, -121, 0, 121, -198, 0, 198, 0)
 TpPlace = PackedVector2Array(0, -80, 0, 80, -140, 0, 140, 0)
-Door = ExtResource("2_lxow3")
+Door = Array[PackedScene]([ExtResource("2_lxow3"), ExtResource("2_lxow3"), ExtResource("2_lxow3"), ExtResource("2_lxow3")])
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=1535992854]
 texture = ExtResource("1_deasy")

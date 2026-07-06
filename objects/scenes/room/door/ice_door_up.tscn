@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://y37lx48b3tg2"]
+
+[ext_resource type="Texture2D" uid="uid://coqf5wek016rw" path="res://assets/room/ice/left_door.png" id="1_iu63i"]
+
+[node name="ice_door_left" type="Node2D" unique_id=316286688]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2130555003]
+texture = ExtResource("1_iu63i")

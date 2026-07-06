@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://i8precc3hbsu"]
 
+[ext_resource type="PackedScene" uid="uid://h806edknpjba" path="res://objects/scenes/room/room/ice_room.tscn" id="2_vp7dn"]
 [ext_resource type="PackedScene" uid="uid://5r52t7krevaw" path="res://objects/obstacles/base_obstacle.tscn" id="2_xjunv"]
 [ext_resource type="PackedScene" uid="uid://b8g6wtawg52c4" path="res://objects/scenes/room/stage.tscn" id="3_kf3xu"]
 [ext_resource type="PackedScene" uid="uid://bhvsvwjhbmq2j" path="res://objects/charactor/player_manager.tscn" id="3_pkkib"]
@@ -55,6 +56,7 @@ occluder = SubResource("OccluderPolygon2D_xjunv")
 [node name="stage" parent="." unique_id=2111426621 instance=ExtResource("3_kf3xu")]
 position = Vector2(0, 0)
 scale = Vector2(1, 1)
+MonsterRoomScene = ExtResource("2_vp7dn")
 
 [node name="enemies" type="Node2D" parent="." unique_id=956815377]
 
@@ -74,3 +76,4 @@ position = Vector2(-44, -143)
 position = Vector2(-224, 38)
 
 [node name="player" parent="." unique_id=163287506 instance=ExtResource("3_pkkib")]
+scale = Vector2(0.2, 0.2)

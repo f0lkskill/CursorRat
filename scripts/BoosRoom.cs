@@ -18,7 +18,7 @@ public partial class BoosRoom : Node2D
     [Export] public Vector2[] DoorPlace = new Vector2[4];//门的坐标按照上下左右排列,门的相对位置
     [Export] public Vector2[] TpPlace = new Vector2[4];//传送的坐标按照上下左右排列,传送的相对位置
     //必看!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    [Export] public PackedScene Door { get; set; }
+    [Export] public PackedScene[] Door { get; set; }
     // 添加一个列表来追踪所有生成的门
     private List<Node2D> doors = new List<Node2D>();
 
@@ -99,7 +99,7 @@ public partial class BoosRoom : Node2D
         {
             if (stage.Room[GridX, GridY - 1] != 0)
             {
-                Node2D door = Door.Instantiate<Node2D>();
+                Node2D door = Door[0].Instantiate<Node2D>();
                 door.Position = new Vector2(DoorPlace[0].X, DoorPlace[0].Y);
                 AddChild(door);
                 doors.Add(door); // 记录门节点
@@ -109,7 +109,7 @@ public partial class BoosRoom : Node2D
         {
             if (stage.Room[GridX, GridY + 1] != 0)
             {
-                Node2D door = Door.Instantiate<Node2D>();
+                Node2D door = Door[1].Instantiate<Node2D>();
                 door.Position = new Vector2(DoorPlace[1].X, DoorPlace[1].Y);
                 door.Scale = new Vector2(1, -1);
                 AddChild(door);
@@ -120,7 +120,7 @@ public partial class BoosRoom : Node2D
         {
             if (stage.Room[GridX - 1, GridY] != 0)
             {
-                Node2D door = Door.Instantiate<Node2D>();
+                Node2D door = Door[2].Instantiate<Node2D>();
                 door.Rotation = (Mathf.Pi * 3) / 2;
                 door.Position = new Vector2(DoorPlace[2].X, DoorPlace[2].Y);
                 AddChild(door);
@@ -131,7 +131,7 @@ public partial class BoosRoom : Node2D
         {
             if (stage.Room[GridX + 1, GridY] != 0)
             {
-                Node2D door = Door.Instantiate<Node2D>();
+                Node2D door = Door[3].Instantiate<Node2D>();
                 door.Rotation = Mathf.Pi / 2;
                 door.Position = new Vector2(DoorPlace[3].X, DoorPlace[3].Y);
                 AddChild(door);
@@ -297,15 +297,15 @@ public partial class BoosRoom : Node2D
         var playerNode = body.GetParent() as player;
         if (playerNode != null && playerNode is player)
         {
+            // 使用 Stage 的方法获取目标房间的 TpPlace
+            Vector2[] targetTpPlace = stage.GetRoomTpPlace(GridX, GridY - 1);
+            if (targetTpPlace == null) return;
 
-            // 获取目标房间的世界坐标
             Vector2 targetWorldPos = stage.RoomGlobalPlace[GridX, GridY - 1];
-            body.GlobalPosition = new Vector2(//这里对应坐标是下门的坐标,所以是下门的传送坐标
-                targetWorldPos.X + TpPlace[1].X,
-                targetWorldPos.Y + TpPlace[1].Y
+            body.GlobalPosition = new Vector2(
+                targetWorldPos.X + targetTpPlace[1].X,  // 下门的传送坐标
+                targetWorldPos.Y + targetTpPlace[1].Y
             );
-            //  GD.Print(targetWorldPos.X + TpPlace[1].X, targetWorldPos.Y + TpPlace[1].Y);
-
         }
     }
 
@@ -315,59 +315,49 @@ public partial class BoosRoom : Node2D
         var playerNode = body.GetParent() as player;
         if (playerNode != null && playerNode is player)
         {
+            Vector2[] targetTpPlace = stage.GetRoomTpPlace(GridX, GridY + 1);
+            if (targetTpPlace == null) return;
 
             Vector2 targetWorldPos = stage.RoomGlobalPlace[GridX, GridY + 1];
-            body.GlobalPosition = new Vector2(//这里对应坐标是上门的坐标,所以是上门的传送坐标
-               targetWorldPos.X + TpPlace[0].X,
-                targetWorldPos.Y + TpPlace[0].Y
+            body.GlobalPosition = new Vector2(
+                targetWorldPos.X + targetTpPlace[0].X,  // 上门的传送坐标
+                targetWorldPos.Y + targetTpPlace[0].Y
             );
-            //   GD.Print(targetWorldPos.X + TpPlace[0].X, targetWorldPos.Y + TpPlace[0].Y);
-
         }
-
     }
+
     //左
     private void _on_left_body_entered_left(Node2D body)
     {
         var playerNode = body.GetParent() as player;
         if (playerNode != null && playerNode is player)
         {
-
+            Vector2[] targetTpPlace = stage.GetRoomTpPlace(GridX - 1, GridY);
+            if (targetTpPlace == null) return;
 
             Vector2 targetWorldPos = stage.RoomGlobalPlace[GridX - 1, GridY];
-
-
-            GD.Print(TpPlace[3].X, TpPlace[3].Y);
-
-            Vector2 finalPos = new Vector2(
-                    targetWorldPos.X + TpPlace[3].X,
-                    targetWorldPos.Y + TpPlace[3].Y
-                );
-
-
-            body.GlobalPosition = finalPos;
-            //    GD.Print(targetWorldPos.X + TpPlace[3].X, targetWorldPos.Y + TpPlace[3].Y);
-
+            body.GlobalPosition = new Vector2(
+                targetWorldPos.X + targetTpPlace[3].X,  // 右门的传送坐标
+                targetWorldPos.Y + targetTpPlace[3].Y
+            );
         }
-
-
     }
+
     //右
     private void _on_right_body_entered_right(Node2D body)
     {
         var playerNode = body.GetParent() as player;
         if (playerNode != null && playerNode is player)
         {
+            Vector2[] targetTpPlace = stage.GetRoomTpPlace(GridX + 1, GridY);
+            if (targetTpPlace == null) return;
 
             Vector2 targetWorldPos = stage.RoomGlobalPlace[GridX + 1, GridY];
-            body.GlobalPosition = new Vector2(// 这里对应坐标是左门的坐标,所以是左门的传送坐标
-              targetWorldPos.X + TpPlace[2].X,
-                targetWorldPos.Y + TpPlace[2].Y
+            body.GlobalPosition = new Vector2(
+                targetWorldPos.X + targetTpPlace[2].X,  // 左门的传送坐标
+                targetWorldPos.Y + targetTpPlace[2].Y
             );
-            //    GD.Print(targetWorldPos.X + TpPlace[2].X, targetWorldPos.Y + TpPlace[2].Y);
-
         }
     }
-
 }
 
