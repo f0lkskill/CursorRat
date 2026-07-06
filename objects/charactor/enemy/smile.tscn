@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://42mc7kywh1ap"]
+
+[ext_resource type="Script" uid="uid://15euk0egu6ur" path="res://scripts/enemy/zombie/zombie.cs" id="1_6bq7r"]
+[ext_resource type="PackedScene" uid="uid://c8a4tl1saryqm" path="res://objects/tools/heal_label.tscn" id="2_lgmew"]
+[ext_resource type="Script" uid="uid://dpv6l04d5lsdg" path="res://scripts/res/base_health.cs" id="3_42a3b"]
+[ext_resource type="PackedScene" uid="uid://dav1l17vgn48a" path="res://objects/charactor/enemy/base_enemy.tscn" id="4_l642a"]
+[ext_resource type="PackedScene" uid="uid://c58amin1l18td" path="res://objects/weapen/ranged/smile_gun.tscn" id="4_lgmew"]
+[ext_resource type="Texture2D" uid="uid://cj3tqbeouem21" path="res://assets/charactor/cursor.png" id="5_6bq7r"]
+
+[sub_resource type="Resource" id="Resource_qa6pn"]
+script = ExtResource("3_42a3b")
+Health = 1000.0
+MaxHealth = 1000.0
+heal_label_scene = ExtResource("2_lgmew")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qa6pn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_6bq7r")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="smile" type="Node2D" unique_id=349148583]
+script = ExtResource("1_6bq7r")
+HealthManager = SubResource("Resource_qa6pn")
+Speed = 300.0
+KnockbackStrength = 1000000.0
+KnockbackDuration = 0.0
+offset = Vector2(0, -40)
+texture_scale = 0.7
+
+[node name="body" parent="." unique_id=165994402 instance=ExtResource("4_l642a")]
+collision_layer = 5
+collision_mask = 3
+
+[node name="smile_gun" parent="body" unique_id=1033862369 node_paths=PackedStringArray("user") instance=ExtResource("4_lgmew")]
+position = Vector2(76, -4)
+user = NodePath("../..")
+bullet_speed = 1000.0
+bullet_life_time = 3.0
+auto_fire = true
+fire_cooldown = 1.2
+texture_scale = 0.2
+is_object = true
+
+[node name="area" type="Area2D" parent="body" unique_id=172765811]
+collision_layer = 4
+collision_mask = 4
+
+[node name="shape" type="CollisionShape2D" parent="body/area" unique_id=1344321655]
+debug_color = Color(0.96862745, 0, 0, 0.41960785)
+
+[node name="sprite" type="AnimatedSprite2D" parent="body" unique_id=999185138]
+sprite_frames = SubResource("SpriteFrames_qa6pn")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=426246677]

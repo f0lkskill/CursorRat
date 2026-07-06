@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://c58amin1l18td"]
+
+[ext_resource type="Script" uid="uid://bevlb8yhpcpc" path="res://scripts/weapen/ranged/smile_gun.cs" id="1_81qjl"]
+[ext_resource type="PackedScene" uid="uid://c4ltv56cualx0" path="res://objects/weapen/ranged/bullet/smile_bullet.tscn" id="2_tlp1p"]
+[ext_resource type="PackedScene" uid="uid://ctjhb82yxasfk" path="res://objects/weapen/ranged/base_ranged.tscn" id="3_e1pps"]
+[ext_resource type="Texture2D" uid="uid://cw3kw4c42jbbv" path="res://icon.svg" id="4_fm7ju"]
+[ext_resource type="Texture2D" uid="uid://v7g6axfdeqdp" path="res://assets/charactor/cursor_outline.png" id="4_tlp1p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uxx52"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tlp1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fm7ju")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="smile_gun" type="Node2D" unique_id=1033862369]
+script = ExtResource("1_81qjl")
+bullet_scene = ExtResource("2_tlp1p")
+
+[node name="body" parent="." unique_id=358912040 instance=ExtResource("3_e1pps")]
+disable_mode = 1
+collision_layer = 0
+collision_mask = 0
+collision_priority = 0.0
+
+[node name="sprite" type="AnimatedSprite2D" parent="body" unique_id=352253704]
+sprite_frames = SubResource("SpriteFrames_uxx52")

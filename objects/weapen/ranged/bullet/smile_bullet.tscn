@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c4ltv56cualx0"]
+
+[ext_resource type="Script" uid="uid://dhhuykg722vhr" path="res://scripts/weapen/ranged/bullet/smile_bullet.cs" id="1_nru0b"]
+[ext_resource type="PackedScene" uid="uid://dhr351j8qpskc" path="res://objects/weapen/ranged/bullet/base_bullet.tscn" id="2_nru0b"]
+[ext_resource type="Texture2D" uid="uid://bnievwlsu3pbu" path="res://assets/charactor/process.png" id="3_nru0b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3p3kq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nru0b")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="smile_bullet" type="Node2D" unique_id=194234244]
+script = ExtResource("1_nru0b")
+is_enemy = true
+is_object = true
+
+[node name="body" parent="." unique_id=923443739 instance=ExtResource("2_nru0b")]
+collision_layer = 8
+collision_mask = 8
+
+[node name="sprite" type="AnimatedSprite2D" parent="body" unique_id=806555506]
+sprite_frames = SubResource("SpriteFrames_3p3kq")

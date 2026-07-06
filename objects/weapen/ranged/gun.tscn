@@ -24,6 +24,7 @@ is_object = true
 
 [node name="body" parent="." unique_id=358912040 instance=ExtResource("3_squ7s")]
 collision_layer = 2
+motion_mode = 1
 
 [node name="sprite" type="AnimatedSprite2D" parent="body" unique_id=352253704]
 sprite_frames = SubResource("SpriteFrames_uxx52")

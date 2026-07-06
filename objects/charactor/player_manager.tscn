@@ -34,8 +34,8 @@ Speed = 1000.0
 KnockbackStrength = 400.0
 
 [node name="body" parent="." unique_id=165994402 instance=ExtResource("1_iq5em")]
-collision_layer = 1
-collision_mask = 1
+collision_layer = 9
+collision_mask = 9
 
 [node name="weapon" type="Node2D" parent="body" unique_id=1519231177]
 script = ExtResource("5_inktr")

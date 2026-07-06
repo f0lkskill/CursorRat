@@ -5,6 +5,7 @@
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vvrfa"]
 
 [node name="base_ranged" type="CharacterBody2D" unique_id=358912040]
+motion_mode = 1
 
 [node name="init" parent="." unique_id=2120728096 instance=ExtResource("1_hwors")]
 

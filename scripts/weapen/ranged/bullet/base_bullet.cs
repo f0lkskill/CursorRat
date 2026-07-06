@@ -3,6 +3,8 @@ using System;
 
 public partial class base_bullet : base_life
 {
+    [Export]
+    public bool is_enemy = false;
     public Vector2 Velocity;
     public float Damage;
     public float LifeTime;
@@ -39,11 +41,26 @@ public partial class base_bullet : base_life
     {
         if (collider == null) return;
         
-        base_enemy enemy = FindParentOfType<base_enemy>(collider);
-        if (enemy != null)
+        var enemy = FindParentOfType<base_enemy>(collider);
+        var player = FindParentOfType<player>(collider);
+
+        if (is_enemy)
         {
-            enemy.TakeHit(this, Damage);
-            QueueFree();
+            var current = player;
+            if (current != null)
+            {
+                current.TakeHit(this, Damage);
+                QueueFree();
+            }
+        }
+        else
+        {
+            var current = enemy;
+            if (current != null)
+            {
+                current.TakeHit(this, Damage);
+                QueueFree();
+            }
         }
     }
 }
