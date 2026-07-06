@@ -36,6 +36,7 @@ public partial class base_ranged : base_weapon
     }
     public void fire()
     {
+        if (!Visible) return;
         if (target_position == Vector2.Zero)
         {
             return;

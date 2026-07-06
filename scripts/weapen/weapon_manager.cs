@@ -30,11 +30,11 @@ public partial class weapon_manager : Node2D
         {
             if (current_weapon != weapon)
             {
-                weapon.Hide();
+                weapon.Visible = false;
             }
             else
             {
-                weapon.Show();
+                weapon.Visible = true;
             }
             current_weapon.GlobalPosition = GlobalPosition;
             current_weapon.body.Velocity = Vector2.Zero;

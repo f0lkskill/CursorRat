@@ -7,13 +7,18 @@ public partial class base_melee : base_weapon
     public override void _Ready()
     {
         base._Ready();
-        CollisionPolygon2D coll = body.GetNode<CollisionPolygon2D>("shape");
-        body.GetNode<CollisionPolygon2D>("area/damage_coll").Polygon = coll.Polygon;
+        CollisionShape2D coll = body.GetNode<CollisionShape2D>("shape");
+        CollisionShape2D area = body.GetNode<CollisionShape2D>("area/shape");
+        area.Shape = coll.Shape;
+        area.GetParent<Area2D>().Scale = new Vector2(texture_scale, texture_scale);
+        area.Position += offset;
     }
 
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
+
+        if (!this.Visible) return;
 
         body.MoveAndSlide();
         // 遍历所有滑动碰撞, 检测是否撞到敌人

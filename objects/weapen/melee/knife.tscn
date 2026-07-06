@@ -2,6 +2,18 @@
 
 [ext_resource type="Script" uid="uid://oc0amde7awpm" path="res://scripts/weapen/melee/knife.cs" id="1_28kqt"]
 [ext_resource type="PackedScene" uid="uid://v43mof46du2n" path="res://objects/weapen/melee/base_melee.tscn" id="1_82fie"]
+[ext_resource type="Texture2D" uid="uid://cf11np12nohm3" path="res://assets/weapon/sword.png" id="3_tkuh5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i0eq6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tkuh5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="knife" type="Node2D" unique_id=1248791426]
 script = ExtResource("1_28kqt")
@@ -10,12 +22,19 @@ texture_scale = 0.7
 is_object = true
 
 [node name="body" parent="." unique_id=358912040 instance=ExtResource("1_82fie")]
+disable_mode = 1
 collision_layer = 0
 collision_mask = 0
+collision_priority = 0.0
 
 [node name="area" type="Area2D" parent="body" unique_id=1361840488]
+collision_layer = 0
+collision_mask = 8
 
-[node name="damage_coll" type="CollisionPolygon2D" parent="body/area" unique_id=1834538585]
-polygon = PackedVector2Array(-21, -70, -15, 191, 19, 159, 21, -78)
+[node name="shape" type="CollisionShape2D" parent="body/area" unique_id=1556151616]
+debug_color = Color(0.96862745, 0, 0, 0.41960785)
+
+[node name="sprite" type="AnimatedSprite2D" parent="body" unique_id=812706867]
+sprite_frames = SubResource("SpriteFrames_i0eq6")
 
 [connection signal="body_entered" from="body/area" to="." method="CollisionChecked"]

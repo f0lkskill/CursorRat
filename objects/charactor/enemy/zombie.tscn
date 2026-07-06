@@ -4,12 +4,24 @@
 [ext_resource type="PackedScene" uid="uid://dav1l17vgn48a" path="res://objects/charactor/enemy/base_enemy.tscn" id="2_5qex4"]
 [ext_resource type="PackedScene" uid="uid://c8a4tl1saryqm" path="res://objects/tools/heal_label.tscn" id="2_onsdp"]
 [ext_resource type="Script" uid="uid://dpv6l04d5lsdg" path="res://scripts/res/base_health.cs" id="3_jk445"]
+[ext_resource type="Texture2D" uid="uid://dctny621r7pnt" path="res://assets/charactor/bfChill.png" id="5_jk445"]
 
 [sub_resource type="Resource" id="Resource_qa6pn"]
 script = ExtResource("3_jk445")
 Health = 1000.0
 MaxHealth = 1000.0
 heal_label_scene = ExtResource("2_onsdp")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qa6pn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_jk445")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="zombie" type="Node2D" unique_id=349148583]
 script = ExtResource("1_x3ihl")
@@ -21,3 +33,6 @@ texture_scale = 0.5
 [node name="body" parent="." unique_id=165994402 instance=ExtResource("2_5qex4")]
 collision_layer = 7
 collision_mask = 3
+
+[node name="sprite" type="AnimatedSprite2D" parent="body" unique_id=999185138]
+sprite_frames = SubResource("SpriteFrames_qa6pn")
