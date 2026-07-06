@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public partial class Stage : Node2D
 {
+    private Dictionary<(int, int), Node2D> roomDictionary = new Dictionary<(int, int), Node2D>();
 
     [Export] public PackedScene MonsterRoomScene { get; set; }  // 怪物房间
     [Export] public PackedScene ChestRoomScene { get; set; }    // 宝箱房间
@@ -152,6 +153,9 @@ public partial class Stage : Node2D
         roomsContainer.Name = "RoomsContainer";
         AddChild(roomsContainer);
 
+        // 清空字典
+        roomDictionary.Clear();
+
         Dictionary<int, PackedScene> roomTypeToScene = new Dictionary<int, PackedScene>();
         if (MonsterRoomScene != null) roomTypeToScene[1] = MonsterRoomScene;
         if (ChestRoomScene != null) roomTypeToScene[2] = ChestRoomScene;
@@ -180,6 +184,9 @@ public partial class Stage : Node2D
                     Vector2 size = GetSpriteSize(roomInstance);
                     roomSizes[x, y] = size;
                     roomInstances[x, y] = roomInstance;
+
+                    // 添加到字典
+                    roomDictionary[(x, y)] = roomInstance;
 
                     // 设置房间信息
                     roomInstance.Name = $"Room_{roomType}_{x}_{y}";
@@ -329,6 +336,30 @@ public partial class Stage : Node2D
             FindSpritesRecursive(child, results);
             if (results.Count > 0) return;
         }
+    }
+    public Vector2[] GetRoomTpPlace(int x, int y)
+    {
+        if (x < 0 || x >= 7 || y < 0 || y >= 7)
+        {
+            GD.PrintErr($"GetRoomTpPlace: 无效坐标 ({x}, {y})");
+            return null;
+        }
+
+        if (roomDictionary.TryGetValue((x, y), out Node2D roomNode))
+        {
+            // 使用 Godot 的 Get 方法获取 TpPlace，适用于任何有 TpPlace 属性的节点
+            var tpPlace = roomNode.Get("TpPlace");
+            if (tpPlace.Obj is Vector2[] tpArray)
+            {
+                return tpArray;
+            }
+
+            GD.PrintErr($"房间 ({x}, {y}) 没有 TpPlace 属性");
+            return null;
+        }
+
+        GD.PrintErr($"房间 ({x}, {y}) 不存在");
+        return null;
     }
 }
 

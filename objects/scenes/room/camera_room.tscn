@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b7wif0lbateqy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvhbo"]
+size = Vector2(1000, 624)
+
+[node name="camera_room" type="Node2D" unique_id=849171008]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=855142144]
+
+[node name="Area2D" type="Area2D" parent="Camera2D" unique_id=2089807501]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Area2D" unique_id=916426770]
+shape = SubResource("RectangleShape2D_wvhbo")

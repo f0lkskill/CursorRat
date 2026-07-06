@@ -1,6 +1,24 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+#region 修改提示
+//DoorPlace ->门的位置,[上][下][左][右]门
+//
+//TpPlace ->传送的位置,[上][下][左][右] 特别注意:上是指玩家从上门出传到下门前的位置,以中心位置为相对坐标移动
+//
+//MonsterNum ->怪物生成数量范围,[最少][最多] 闭区间
+//
+//SpawnPlaceNum ->怪物生成点位数量,对应房间节点下的1,2,3...节点,最多n个
+//
+//Door ->门的场景
+//
+//MonsterScene ->怪物的场景列表,对应生成怪物
+//
+//MonsterPercent ->怪物场景对应生成权重,和固定为1,权重越大生成概率越大
+//
+//
+//
+#endregion
 
 public partial class Room : Node2D
 {
@@ -14,11 +32,19 @@ public partial class Room : Node2D
     private Camera2D camera;
     private Sprite2D roomSprite;
     //修改房间贴图必看!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!----出门后对应的tp坐标[tp到门检测的外面,顺便加载场景,防止回去卡死][人话就是检测区+碰撞区加起来 * 2][就是玩家相对往上tp实现换房间]
-
+    
     [Export] public Vector2[] DoorPlace = new Vector2[4];//门的坐标按照上下左右排列,门的相对位置
     [Export] public Vector2[] TpPlace = new Vector2[4];//传送的坐标按照上下左右排列,传送的相对位置
+
+    
+    
+    [Export] public Vector2 MonsterNum { get; set; }//怪物生成数量范围
+    [Export] public int SpawnPlaceNum { get; set; }//怪物生成点位数量
     //必看!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    [Export] public PackedScene Door { get; set; }
+    [Export] public PackedScene[] Door { get; set; }//门的场景,上下左右
+    [Export]
+    public PackedScene[] MonsterScene { get; set; } //怪物列表,生成怪物
+    [Export] public int[] MonsterPercent { get; set; }//怪物场景对应生成权重,和固定为1,权重越大生成概率越大
     // 添加一个列表来追踪所有生成的门
     private List<Node2D> doors = new List<Node2D>();
 
@@ -99,7 +125,7 @@ public partial class Room : Node2D
         {
             if (stage.Room[GridX, GridY - 1] != 0)
             {
-                Node2D door = Door.Instantiate<Node2D>();
+                Node2D door = Door[0].Instantiate<Node2D>();
                 door.Position = new Vector2(DoorPlace[0].X, DoorPlace[0].Y);
                 AddChild(door);
                 doors.Add(door); // 记录门节点
@@ -109,9 +135,9 @@ public partial class Room : Node2D
         {
             if (stage.Room[GridX, GridY + 1] != 0)
             {
-                Node2D door = Door.Instantiate<Node2D>();
+                Node2D door = Door[1].Instantiate<Node2D>();
                 door.Position = new Vector2(DoorPlace[1].X, DoorPlace[1].Y);
-                door.Scale = new Vector2(1, -1);
+              //  door.Scale = new Vector2(1, -1);
                 AddChild(door);
                 doors.Add(door);
             }
@@ -120,8 +146,8 @@ public partial class Room : Node2D
         {
             if (stage.Room[GridX - 1, GridY] != 0)
             {
-                Node2D door = Door.Instantiate<Node2D>();
-                door.Rotation = (Mathf.Pi * 3) / 2;
+                Node2D door = Door[2].Instantiate<Node2D>();
+             //   door.Rotation = (Mathf.Pi * 3) / 2;
                 door.Position = new Vector2(DoorPlace[2].X, DoorPlace[2].Y);
                 AddChild(door);
                 doors.Add(door);
@@ -131,8 +157,8 @@ public partial class Room : Node2D
         {
             if (stage.Room[GridX + 1, GridY] != 0)
             {
-                Node2D door = Door.Instantiate<Node2D>();
-                door.Rotation = Mathf.Pi / 2;
+                Node2D door = Door[3].Instantiate<Node2D>();
+              //  door.Rotation = Mathf.Pi / 2;
                 door.Position = new Vector2(DoorPlace[3].X, DoorPlace[3].Y);
                 AddChild(door);
                 doors.Add(door);
@@ -158,6 +184,7 @@ public partial class Room : Node2D
     {
         if (body.GetParent() is player)
         {
+            #region 生成门等
             //进入,纹理可视化
             roomSprite.Visible = true;
 
@@ -240,9 +267,182 @@ public partial class Room : Node2D
                     right2.CollisionMask = 0;//禁用碰撞
                 }
             }
+            #endregion
 
+            #region 生成怪物
+            SpawnMonsters();
+
+            #endregion
         }
     }
+
+
+    #region 生成怪物
+    private void SpawnMonsters()
+    {
+        // 1. 验证数据
+        if (!ValidateMonsterData())
+            return;
+
+        // 2. 收集所有可用的生成点位
+        List<Node2D> availableSpawnPoints = new List<Node2D>();
+        for (int i = 1; i <= SpawnPlaceNum; i++)
+        {
+            string name = i.ToString();
+            Node2D spawnPoint = GetNodeOrNull<Node2D>(name);
+            if (spawnPoint != null)
+            {
+                availableSpawnPoints.Add(spawnPoint);
+            }
+        }
+
+        if (availableSpawnPoints.Count == 0)
+        {
+            GD.PrintErr("没有可用的怪物生成点位！");
+            return;
+        }
+
+        // 3. 计算要生成的怪物数量（在 MonsterNum 范围内随机）
+        int monsterCount = GetRandomMonsterCount();
+        if (monsterCount <= 0)
+        {
+            GD.Print("本次生成怪物数量为0");
+            return;
+        }
+
+        // 4. 限制数量不超过可用点位数量
+        monsterCount = Math.Min(monsterCount, availableSpawnPoints.Count);
+
+        GD.Print($"🎯 计划生成 {monsterCount} 个怪物（可用点位: {availableSpawnPoints.Count} 个）");
+
+        // 5. 计算总权重（用于怪物类型选择）
+        int totalWeight = CalculateTotalWeight();
+        if (totalWeight <= 0)
+        {
+            GD.PrintErr("总权重为0！");
+            return;
+        }
+
+        // 6. 随机选择点位并生成怪物
+        Random random = new Random();
+        List<Node2D> selectedPoints = new List<Node2D>();
+
+        for (int i = 0; i < monsterCount; i++)
+        {
+            // 6.1 从剩余点位中随机选择一个
+            int pointIndex = random.Next(0, availableSpawnPoints.Count);
+            Node2D selectedPoint = availableSpawnPoints[pointIndex];
+
+            // 6.2 从列表中移除已选中的点位（防止重复使用）
+            availableSpawnPoints.RemoveAt(pointIndex);
+
+            // 6.3 根据权重选择怪物类型
+            int monsterIndex = GetWeightedRandomIndex(totalWeight);
+
+            // 6.4 实例化并生成怪物
+            if (monsterIndex >= 0 && monsterIndex < MonsterScene.Length)
+            {
+                PackedScene scene = MonsterScene[monsterIndex];
+                if (scene != null)
+                {
+                    Node2D monster = scene.Instantiate<Node2D>();
+                    monster.Position = selectedPoint.Position;
+                    monster.Scale = selectedPoint.Scale;
+                    AddChild(monster);
+
+                    GD.Print($"✅ 生成怪物 {i + 1}/{monsterCount} → 点位 {selectedPoint.Name} → 怪物索引 {monsterIndex}");
+                }
+            }
+        }
+
+        GD.Print($"🎉 怪物生成完成！共生成 {monsterCount} 个怪物");
+    }
+
+    // 验证怪物数据
+    private bool ValidateMonsterData()
+    {
+        if (MonsterScene == null || MonsterScene.Length == 0)
+        {
+            GD.PrintErr("❌ MonsterScene 为空，无法生成怪物！");
+            return false;
+        }
+
+        if (MonsterPercent == null || MonsterPercent.Length != MonsterScene.Length)
+        {
+            GD.PrintErr("❌ MonsterPercent 长度与 MonsterScene 不匹配！");
+            return false;
+        }
+
+        // 检查是否有权重为负值
+        foreach (int weight in MonsterPercent)
+        {
+            if (weight < 0)
+            {
+                GD.PrintErr($"❌ 权重不能为负数: {weight}");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // 获取随机怪物数量（在 MonsterNum 范围内等概率）
+    private int GetRandomMonsterCount()
+    {
+        int minCount = (int)MonsterNum.X;
+        int maxCount = (int)MonsterNum.Y;
+
+        // 确保范围有效
+        if (minCount < 0) minCount = 0;
+        if (maxCount < minCount) maxCount = minCount;
+
+        if (minCount == 0 && maxCount == 0)
+        {
+            return 0;
+        }
+
+        // 等概率随机
+        Random random = new Random();
+        return random.Next(minCount, maxCount + 1); // +1 因为 Next 不包含上限
+    }
+
+    // 计算总权重
+    private int CalculateTotalWeight()
+    {
+        int total = 0;
+        foreach (int weight in MonsterPercent)
+        {
+            total += weight;
+        }
+        return total;
+    }
+
+    // 根据权重随机选择怪物索引
+    private int GetWeightedRandomIndex(int totalWeight)
+    {
+        if (totalWeight <= 0)
+        {
+            GD.PrintErr("总权重为0，无法选择怪物");
+            return 0;
+        }
+
+        Random random = new Random();
+        int randomValue = random.Next(0, totalWeight);
+
+        int cumulative = 0;
+        for (int i = 0; i < MonsterPercent.Length; i++)
+        {
+            cumulative += MonsterPercent[i];
+            if (randomValue < cumulative)
+            {
+                return i;
+            }
+        }
+
+        // 保底返回最后一个
+        return MonsterPercent.Length - 1;
+    }
+    #endregion
     private void _on_area_2d_body_exited(Node2D body)
     {
         if (body.GetParent() is player)
@@ -297,12 +497,12 @@ public partial class Room : Node2D
         var playerNode = body.GetParent() as player;
         if (playerNode != null && playerNode is player)
         {
-            
+            Vector2[] targetTpPlace = stage.GetRoomTpPlace(GridX, GridY - 1);
             // 获取目标房间的世界坐标
             Vector2 targetWorldPos = stage.RoomGlobalPlace[GridX, GridY - 1];
             body.GlobalPosition = new Vector2(//这里对应坐标是下门的坐标,所以是下门的传送坐标
-                targetWorldPos.X + TpPlace[1].X,
-                targetWorldPos.Y + TpPlace[1].Y
+                targetWorldPos.X + targetTpPlace[1].X,
+                targetWorldPos.Y + targetTpPlace[1].Y
             );
           //  GD.Print(targetWorldPos.X + TpPlace[1].X, targetWorldPos.Y + TpPlace[1].Y);
             
@@ -315,11 +515,11 @@ public partial class Room : Node2D
         var playerNode = body.GetParent() as player;
         if (playerNode != null && playerNode is player)
         {
-          
+            Vector2[] targetTpPlace = stage.GetRoomTpPlace(GridX, GridY + 1);
             Vector2 targetWorldPos = stage.RoomGlobalPlace[GridX, GridY + 1];
             body.GlobalPosition = new Vector2(//这里对应坐标是上门的坐标,所以是上门的传送坐标
-               targetWorldPos.X + TpPlace[0].X,
-                targetWorldPos.Y + TpPlace[0].Y
+               targetWorldPos.X + targetTpPlace[0].X,
+                targetWorldPos.Y + targetTpPlace[0].Y
             );
          //   GD.Print(targetWorldPos.X + TpPlace[0].X, targetWorldPos.Y + TpPlace[0].Y);
            
@@ -332,16 +532,16 @@ public partial class Room : Node2D
         var playerNode = body.GetParent() as player;
         if (playerNode != null && playerNode is player)
         {
-          
 
+            Vector2[] targetTpPlace = stage.GetRoomTpPlace(GridX - 1, GridY);
             Vector2 targetWorldPos = stage.RoomGlobalPlace[GridX - 1, GridY];
 
 
             GD.Print(TpPlace[3].X, TpPlace[3].Y);
         
         Vector2 finalPos = new Vector2(
-                targetWorldPos.X + TpPlace[3].X,
-                targetWorldPos.Y + TpPlace[3].Y
+                targetWorldPos.X + targetTpPlace[3].X,
+                targetWorldPos.Y + targetTpPlace[3].Y
             );
 
 
@@ -358,11 +558,11 @@ public partial class Room : Node2D
         var playerNode = body.GetParent() as player;
         if (playerNode != null && playerNode is player)
         {
-         
+            Vector2[] targetTpPlace = stage.GetRoomTpPlace(GridX + 1, GridY);
             Vector2 targetWorldPos = stage.RoomGlobalPlace[GridX + 1, GridY];
             body.GlobalPosition = new Vector2(// 这里对应坐标是左门的坐标,所以是左门的传送坐标
-              targetWorldPos.X + TpPlace[2].X,
-                targetWorldPos.Y + TpPlace[2].Y
+              targetWorldPos.X + targetTpPlace[2].X,
+                targetWorldPos.Y + targetTpPlace[2].Y
             );
         //    GD.Print(targetWorldPos.X + TpPlace[2].X, targetWorldPos.Y + TpPlace[2].Y);
            

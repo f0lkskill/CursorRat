@@ -32,6 +32,7 @@ script = ExtResource("1_bd8et")
 HealthManager = SubResource("Resource_x24yt")
 Speed = 1000.0
 KnockbackStrength = 400.0
+is_object = true
 
 [node name="body" parent="." unique_id=165994402 instance=ExtResource("1_iq5em")]
 collision_layer = 9

@@ -1,12 +1,15 @@
-[gd_scene format=3 uid="uid://b2io53q5c12xt"]
+[gd_scene format=3 uid="uid://h806edknpjba"]
 
-[ext_resource type="Script" uid="uid://bntn8j1tihahj" path="res://scripts/Room.cs" id="1_sk65m"]
-[ext_resource type="Texture2D" uid="uid://bl7646pf8f8uo" path="res://assets/room/rock_room.png" id="2_vqr5h"]
-[ext_resource type="PackedScene" uid="uid://d1d4up3uo0kbl" path="res://objects/charactor/enemy/zombie.tscn" id="3_5w7hl"]
-[ext_resource type="PackedScene" uid="uid://bk6wp1lvqpl1y" path="res://objects/scenes/room/door/door.tscn" id="3_vqr5h"]
+[ext_resource type="Script" uid="uid://bntn8j1tihahj" path="res://scripts/Room.cs" id="1_3c7aj"]
+[ext_resource type="PackedScene" uid="uid://y37lx48b3tg2" path="res://objects/scenes/room/door/ice_door_up.tscn" id="2_d1tgv"]
+[ext_resource type="PackedScene" uid="uid://d1d4up3uo0kbl" path="res://objects/charactor/enemy/zombie.tscn" id="3_6rw0l"]
+[ext_resource type="PackedScene" uid="uid://cd06urqnkdr4q" path="res://objects/scenes/room/door/ice_door_down.tscn" id="3_ablm6"]
+[ext_resource type="Texture2D" uid="uid://veplo3axkxug" path="res://assets/room/ice/ice_room_1.png" id="4_3c7aj"]
+[ext_resource type="PackedScene" uid="uid://4qlfl82wraup" path="res://objects/scenes/room/door/ice_door_left.tscn" id="4_thq57"]
+[ext_resource type="PackedScene" uid="uid://cmralxf1rntey" path="res://objects/scenes/room/door/ice_door_right.tscn" id="5_w5hgs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_igqou"]
-size = Vector2(468.5, 312)
+size = Vector2(1330.5, 928)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifow5"]
 size = Vector2(46, 19.625)
@@ -27,83 +30,95 @@ size = Vector2(31.5, 50.5)
 size = Vector2(32, 51)
 
 [node name="room" type="Node2D" unique_id=1877895239]
-script = ExtResource("1_sk65m")
-DoorPlace = PackedVector2Array(0, -121, 0, 121, -198, 0, 198, 0)
-TpPlace = PackedVector2Array(0, -80, 0, 80, -140, 0, 140, 0)
+script = ExtResource("1_3c7aj")
+DoorPlace = PackedVector2Array(65, -390, -90, 400, -590, 0, 500, 0)
+TpPlace = PackedVector2Array(60, -250, -60, 280, -475, 0, 350, 0)
 MonsterNum = Vector2(1, 2)
 SpawnPlaceNum = 2
-Door = Array[PackedScene]([ExtResource("3_vqr5h"), ExtResource("3_vqr5h"), ExtResource("3_vqr5h"), ExtResource("3_vqr5h")])
-MonsterScene = Array[PackedScene]([ExtResource("3_5w7hl")])
+Door = Array[PackedScene]([ExtResource("2_d1tgv"), ExtResource("3_ablm6"), ExtResource("4_thq57"), ExtResource("5_w5hgs")])
+MonsterScene = Array[PackedScene]([ExtResource("3_6rw0l")])
 MonsterPercent = PackedInt32Array(1)
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=558841734]
-texture = ExtResource("2_vqr5h")
+texture = ExtResource("4_3c7aj")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1555749093]
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2093057558]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=575230635]
-position = Vector2(-0.25, 0)
+position = Vector2(-3.25, -1)
 shape = SubResource("RectangleShape2D_igqou")
 debug_color = Color(0, 0.63529414, 0.23137255, 0.41960785)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1289975831]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1254312292]
-polygon = PackedVector2Array(23, -105, 23, -134, -23, -134, -23, -104, -182, -105, -182, -24, -215, -24, -215, 23, -183, 23, -183, 106, -234, 157, -234, -155, 233, -155, 232, 155, -236, 157, -183, 106, -22, 106, -22, 137, 24, 137, 24, 105, 183, 105, 183, 27, 215, 27, 215, -22, 183, -22, 183, -106)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1757908072]
+polygon = PackedVector2Array(-670, -467, -402, -298, -38, -312, -35, -430, 169, -431, 174, -300, 442, -265, 411, -70, 554, -45, 549, 85, 401, 75, 299, 95, 280, 196, 167, 200, 135, 331, 16, 338, -39, 455, -181, 459, -224, 327, -365, 295, -388, 167, -545, 145, -554, 96, -647, 90, -641, -87, -530, -79, -518, -130, -413, -142, -403, -296, -670, -465, -667, 466, 666, 466, 667, -463)
 
 [node name="up" type="Area2D" parent="." unique_id=176334970]
+position = Vector2(42.999996, -388.00003)
+scale = Vector2(6.448803, 5.7923193)
 
 [node name="up" type="CollisionShape2D" parent="up" unique_id=1656454735]
-position = Vector2(0, -123.8125)
+position = Vector2(1, -3)
 shape = SubResource("RectangleShape2D_ifow5")
 debug_color = Color(0.7360364, 0.23532286, 0.54752326, 0.41960785)
 
 [node name="down" type="Area2D" parent="." unique_id=1847085733]
+position = Vector2(-115.999985, 429)
+scale = Vector2(3.980897, 4.8489575)
 
 [node name="down" type="CollisionShape2D" parent="down" unique_id=1643551633]
-position = Vector2(1, 126.375)
+position = Vector2(3, 1)
 shape = SubResource("RectangleShape2D_ifow5")
 debug_color = Color(0.7214175, 0.32981065, 0.87363863, 0.41960785)
 
 [node name="left" type="Area2D" parent="." unique_id=902591862]
+position = Vector2(-612, -14.000008)
+scale = Vector2(3.5033793, 4.810362)
 
 [node name="left" type="CollisionShape2D" parent="left" unique_id=191117758]
-position = Vector2(-202, -1)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_abi3o")
 debug_color = Color(0.79308873, 0.31655934, 0.7288022, 0.41960785)
 
 [node name="right" type="Area2D" parent="." unique_id=1244566850]
+position = Vector2(505, 6.9999847)
+scale = Vector2(5.166161, 3.818247)
 
 [node name="right" type="CollisionShape2D" parent="right" unique_id=180928693]
-position = Vector2(202, 3)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_abi3o")
 debug_color = Color(0.688797, 0.39843136, 0.7768509, 0.41960785)
 
 [node name="up2" type="StaticBody2D" parent="." unique_id=602986905]
-position = Vector2(0, -123)
+position = Vector2(69, -410)
+scale = Vector2(5.185504, 5.9105706)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="up2" unique_id=849292195]
 position = Vector2(0.5, 4)
 shape = SubResource("RectangleShape2D_wvhbo")
 
 [node name="down2" type="StaticBody2D" parent="." unique_id=265925142]
-position = Vector2(1, 121)
+position = Vector2(-89, 378.99997)
+scale = Vector2(5.995949, 2.6157978)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="down2" unique_id=2003878242]
 position = Vector2(-0.5, 1.5)
 shape = SubResource("RectangleShape2D_ibjym")
 
 [node name="left2" type="StaticBody2D" parent="." unique_id=1329929439]
-position = Vector2(-202, -1)
+position = Vector2(-598, 6)
+scale = Vector2(3.1652076, 4.117447)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="left2" unique_id=1379336884]
 position = Vector2(3.25, 1.75)
 shape = SubResource("RectangleShape2D_jrdhs")
 
 [node name="right2" type="StaticBody2D" parent="." unique_id=1213205496]
-position = Vector2(203, 1)
+position = Vector2(473, 21)
+scale = Vector2(3.1361244, 4.760585)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="right2" unique_id=1350614251]
 position = Vector2(-4, 2.5)

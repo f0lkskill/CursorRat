@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://i8precc3hbsu"]
 
+[ext_resource type="PackedScene" uid="uid://h806edknpjba" path="res://objects/scenes/room/room/ice_room.tscn" id="2_vp7dn"]
 [ext_resource type="PackedScene" uid="uid://5r52t7krevaw" path="res://objects/obstacles/base_obstacle.tscn" id="2_xjunv"]
 [ext_resource type="PackedScene" uid="uid://b8g6wtawg52c4" path="res://objects/scenes/room/stage.tscn" id="3_kf3xu"]
 [ext_resource type="PackedScene" uid="uid://bhvsvwjhbmq2j" path="res://objects/charactor/player_manager.tscn" id="3_pkkib"]
-[ext_resource type="Script" uid="uid://d2g2ehqijbflu" path="res://scripts/heal_label.cs" id="4_kf3xu"]
-[ext_resource type="Script" uid="uid://dpv6l04d5lsdg" path="res://scripts/res/base_health.cs" id="5_17vdm"]
 
 [sub_resource type="Gradient" id="Gradient_xjunv"]
 interpolation_mode = 2
@@ -25,27 +24,6 @@ gradient = SubResource("Gradient_pkkib")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xjunv"]
 polygon = PackedVector2Array(-1238, -1107, -1206, 1060, 1223, 1071, 1221, -1096)
-
-[sub_resource type="PackedScene" id="PackedScene_ryt30"]
-_bundled = {
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"id_paths": [],
-"names": PackedStringArray("heal_label", "Label", "offset_right", "offset_bottom", "theme_override_colors/font_color", "theme_override_colors/font_shadow_color", "theme_override_colors/font_outline_color", "theme_override_constants/outline_size", "theme_override_constants/shadow_outline_size", "theme_override_font_sizes/font_size", "text", "script"),
-"node_count": 1,
-"node_ids": PackedInt32Array(560315631),
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 10, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 8, 6, 9, 7, 10, 8, 11, 9, 0),
-"variants": [106.0, 23.0, Color(1, 1, 1, 1), Color(0, 0, 0, 0.4509804), Color(0, 0, 0, 1), 5, 5, 30, "test message ", ExtResource("4_kf3xu")],
-"version": 3
-}
-
-[sub_resource type="Resource" id="Resource_cd80e"]
-script = ExtResource("5_17vdm")
-Health = 10000.0
-MaxHealth = 10000.0
-heal_label_scene = SubResource("PackedScene_ryt30")
 
 [node name="MainScene" type="Node2D" unique_id=352933808]
 position = Vector2(181, -36)
@@ -78,6 +56,7 @@ occluder = SubResource("OccluderPolygon2D_xjunv")
 [node name="stage" parent="." unique_id=2111426621 instance=ExtResource("3_kf3xu")]
 position = Vector2(0, 0)
 scale = Vector2(1, 1)
+MonsterRoomScene = ExtResource("2_vp7dn")
 
 [node name="enemies" type="Node2D" parent="." unique_id=956815377]
 
@@ -98,5 +77,3 @@ position = Vector2(-224, 38)
 
 [node name="player" parent="." unique_id=163287506 instance=ExtResource("3_pkkib")]
 scale = Vector2(0.2, 0.2)
-HealthManager = SubResource("Resource_cd80e")
-Speed = 400.0
