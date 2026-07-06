@@ -44,7 +44,7 @@ public partial class Room : Node2D
     [Export] public PackedScene[] Door { get; set; }//门的场景,上下左右
     [Export]
     public PackedScene[] MonsterScene { get; set; } //怪物列表,生成怪物
-    [Export] public int[] MonsterPercent { get; set; }//怪物场景对应生成权重,和固定为1,权重越大生成概率越大
+    [Export] public double[] MonsterPercent { get; set; }//怪物场景对应生成权重,和固定为1,权重越大生成概率越大
     // 添加一个列表来追踪所有生成的门
     private List<Node2D> doors = new List<Node2D>();
 
@@ -316,13 +316,12 @@ public partial class Room : Node2D
         GD.Print($"🎯 计划生成 {monsterCount} 个怪物（可用点位: {availableSpawnPoints.Count} 个）");
 
         // 5. 计算总权重（用于怪物类型选择）
-        int totalWeight = CalculateTotalWeight();
+        double totalWeight = CalculateTotalWeight();
         if (totalWeight <= 0)
         {
             GD.PrintErr("总权重为0！");
             return;
         }
-
         // 6. 随机选择点位并生成怪物
         Random random = new Random();
         List<Node2D> selectedPoints = new List<Node2D>();
@@ -359,6 +358,7 @@ public partial class Room : Node2D
     }
 
     // 验证怪物数据
+    // 验证怪物数据
     private bool ValidateMonsterData()
     {
         if (MonsterScene == null || MonsterScene.Length == 0)
@@ -374,13 +374,26 @@ public partial class Room : Node2D
         }
 
         // 检查是否有权重为负值
-        foreach (int weight in MonsterPercent)
+        foreach (double weight in MonsterPercent)
         {
             if (weight < 0)
             {
                 GD.PrintErr($"❌ 权重不能为负数: {weight}");
                 return false;
             }
+        }
+
+        // 验证权重总和是否接近1（允许浮点数误差）
+        double totalWeight = 0;
+        foreach (double weight in MonsterPercent)
+        {
+            totalWeight += weight;
+        }
+
+        if (Math.Abs(totalWeight - 1.0) > 0.0001) // 允许0.0001的误差
+        {
+            GD.PrintErr($"❌ 权重总和必须为1，当前总和: {totalWeight}");
+            return false;
         }
 
         return true;
@@ -407,10 +420,11 @@ public partial class Room : Node2D
     }
 
     // 计算总权重
-    private int CalculateTotalWeight()
+    // 计算总权重
+    private double CalculateTotalWeight()
     {
-        int total = 0;
-        foreach (int weight in MonsterPercent)
+        double total = 0;
+        foreach (double weight in MonsterPercent)
         {
             total += weight;
         }
@@ -418,7 +432,8 @@ public partial class Room : Node2D
     }
 
     // 根据权重随机选择怪物索引
-    private int GetWeightedRandomIndex(int totalWeight)
+    // 根据权重随机选择怪物索引
+    private int GetWeightedRandomIndex(double totalWeight)
     {
         if (totalWeight <= 0)
         {
@@ -427,9 +442,9 @@ public partial class Room : Node2D
         }
 
         Random random = new Random();
-        int randomValue = random.Next(0, totalWeight);
+        double randomValue = random.NextDouble() * totalWeight; // 使用 NextDouble 生成 [0.0, 1.0) 之间的随机数
 
-        int cumulative = 0;
+        double cumulative = 0;
         for (int i = 0; i < MonsterPercent.Length; i++)
         {
             cumulative += MonsterPercent[i];
