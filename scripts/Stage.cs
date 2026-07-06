@@ -7,6 +7,7 @@ public partial class Stage : Node2D
 {
     private Dictionary<(int, int), Node2D> roomDictionary = new Dictionary<(int, int), Node2D>();
 
+    [Export] public player Player;
     [Export] public PackedScene MonsterRoomScene { get; set; }  // 怪物房间
     [Export] public PackedScene ChestRoomScene { get; set; }    // 宝箱房间
     [Export] public PackedScene BarRoomScene { get; set; }      // 酒吧房间
@@ -175,7 +176,9 @@ public partial class Stage : Node2D
                 if (roomType > 0 && roomTypeToScene.ContainsKey(roomType))
                 {
                     PackedScene scene = roomTypeToScene[roomType];
-                    Node2D roomInstance = scene.Instantiate<Node2D>();
+                    var roomInstance = scene.Instantiate<Node2D>();
+
+                    // roomInstance.Player = Player;
 
                     // 先添加到场景树（才能正确获取 Sprite2D 尺寸）
                     roomsContainer.AddChild(roomInstance);

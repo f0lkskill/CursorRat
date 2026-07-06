@@ -31,6 +31,7 @@ public partial class Room : Node2D
 
     private Camera2D camera;
     private Sprite2D roomSprite;
+
     //修改房间贴图必看!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!----出门后对应的tp坐标[tp到门检测的外面,顺便加载场景,防止回去卡死][人话就是检测区+碰撞区加起来 * 2][就是玩家相对往上tp实现换房间]
     
     [Export] public Vector2[] DoorPlace = new Vector2[4];//门的坐标按照上下左右排列,门的相对位置
@@ -344,10 +345,13 @@ public partial class Room : Node2D
                 PackedScene scene = MonsterScene[monsterIndex];
                 if (scene != null)
                 {
-                    Node2D monster = scene.Instantiate<Node2D>();
+                    #region 生成怪物
+                    base_enemy monster = scene.Instantiate<base_enemy>();
                     monster.Position = selectedPoint.Position;
                     monster.Scale = selectedPoint.Scale;
+                    // monster.PlayerManager = Player;
                     AddChild(monster);
+                    #endregion
 
                     GD.Print($"✅ 生成怪物 {i + 1}/{monsterCount} → 点位 {selectedPoint.Name} → 怪物索引 {monsterIndex}");
                 }

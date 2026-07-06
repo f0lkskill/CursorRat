@@ -53,9 +53,10 @@ visible = false
 position = Vector2(413, 302)
 occluder = SubResource("OccluderPolygon2D_xjunv")
 
-[node name="stage" parent="." unique_id=2111426621 instance=ExtResource("3_kf3xu")]
+[node name="stage" parent="." unique_id=2111426621 node_paths=PackedStringArray("Player") instance=ExtResource("3_kf3xu")]
 position = Vector2(0, 0)
 scale = Vector2(1, 1)
+Player = NodePath("../player")
 MonsterRoomScene = ExtResource("2_vp7dn")
 
 [node name="enemies" type="Node2D" parent="." unique_id=956815377]
@@ -77,3 +78,4 @@ position = Vector2(-224, 38)
 
 [node name="player" parent="." unique_id=163287506 instance=ExtResource("3_pkkib")]
 scale = Vector2(0.2, 0.2)
+Speed = 300.0

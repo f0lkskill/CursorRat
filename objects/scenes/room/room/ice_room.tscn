@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://veplo3axkxug" path="res://assets/room/ice/ice_room_1.png" id="4_3c7aj"]
 [ext_resource type="PackedScene" uid="uid://4qlfl82wraup" path="res://objects/scenes/room/door/ice_door_left.tscn" id="4_thq57"]
 [ext_resource type="PackedScene" uid="uid://cmralxf1rntey" path="res://objects/scenes/room/door/ice_door_right.tscn" id="5_w5hgs"]
+[ext_resource type="PackedScene" uid="uid://42mc7kywh1ap" path="res://objects/charactor/enemy/smile.tscn" id="7_ablm6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_igqou"]
 size = Vector2(1330.5, 928)
@@ -36,8 +37,8 @@ TpPlace = PackedVector2Array(60, -250, -60, 280, -475, 0, 350, 0)
 MonsterNum = Vector2(1, 2)
 SpawnPlaceNum = 2
 Door = Array[PackedScene]([ExtResource("2_d1tgv"), ExtResource("3_ablm6"), ExtResource("4_thq57"), ExtResource("5_w5hgs")])
-MonsterScene = Array[PackedScene]([ExtResource("3_6rw0l")])
-MonsterPercent = PackedInt32Array(1)
+MonsterScene = Array[PackedScene]([ExtResource("3_6rw0l"), ExtResource("7_ablm6")])
+MonsterPercent = PackedFloat64Array(0.5, 0.5)
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=558841734]
 texture = ExtResource("4_3c7aj")
