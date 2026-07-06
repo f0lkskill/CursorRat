@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://b2io53q5c12xt"]
+[gd_scene format=3 uid="uid://k87hvpl1hiqq"]
 
-[ext_resource type="Script" uid="uid://bntn8j1tihahj" path="res://scripts/Room.cs" id="1_sk65m"]
-[ext_resource type="Texture2D" uid="uid://bl7646pf8f8uo" path="res://assets/room/rock_room.png" id="2_vqr5h"]
-[ext_resource type="PackedScene" uid="uid://bk6wp1lvqpl1y" path="res://objects/scenes/room/door/door.tscn" id="3_vqr5h"]
+[ext_resource type="Script" uid="uid://bntn8j1tihahj" path="res://scripts/Room.cs" id="1_fujsv"]
+[ext_resource type="PackedScene" uid="uid://bk6wp1lvqpl1y" path="res://objects/scenes/room/door/door.tscn" id="2_b8wo0"]
+[ext_resource type="Texture2D" uid="uid://bl7646pf8f8uo" path="res://assets/room/rock_room.png" id="3_dt544"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_igqou"]
 size = Vector2(468.5, 312)
@@ -26,13 +26,13 @@ size = Vector2(31.5, 50.5)
 size = Vector2(32, 51)
 
 [node name="room" type="Node2D" unique_id=1877895239]
-script = ExtResource("1_sk65m")
+script = ExtResource("1_fujsv")
 DoorPlace = PackedVector2Array(0, -121, 0, 121, -198, 0, 198, 0)
 TpPlace = PackedVector2Array(0, -80, 0, 80, -140, 0, 140, 0)
-Door = ExtResource("3_vqr5h")
+Door = ExtResource("2_b8wo0")
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=558841734]
-texture = ExtResource("2_vqr5h")
+texture = ExtResource("3_dt544")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1555749093]
 
@@ -103,8 +103,6 @@ position = Vector2(203, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="right2" unique_id=1350614251]
 position = Vector2(-4, 2.5)
 shape = SubResource("RectangleShape2D_xeyld")
-
-[node name="Spawn" type="Node2D" parent="." unique_id=968506265]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

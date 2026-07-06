@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://5r52t7krevaw" path="res://objects/obstacles/base_obstacle.tscn" id="2_xjunv"]
 [ext_resource type="PackedScene" uid="uid://b8g6wtawg52c4" path="res://objects/scenes/room/stage.tscn" id="3_kf3xu"]
+[ext_resource type="PackedScene" uid="uid://bhvsvwjhbmq2j" path="res://objects/charactor/player_manager.tscn" id="3_pkkib"]
 
 [sub_resource type="Gradient" id="Gradient_xjunv"]
 interpolation_mode = 2
@@ -71,3 +72,5 @@ position = Vector2(-44, -143)
 
 [node name="BaseObstacle4" parent="obstacles" unique_id=626001464 instance=ExtResource("2_xjunv")]
 position = Vector2(-224, 38)
+
+[node name="player" parent="." unique_id=163287506 instance=ExtResource("3_pkkib")]
