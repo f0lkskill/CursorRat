@@ -6,6 +6,7 @@
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rpcek"]
 
 [node name="base_enemy" type="CharacterBody2D" unique_id=165994402]
+motion_mode = 1
 
 [node name="init" parent="." unique_id=2120728096 instance=ExtResource("1_xaf6i")]
 

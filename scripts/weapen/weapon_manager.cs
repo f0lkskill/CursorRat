@@ -5,16 +5,25 @@ using System.Collections.Generic;
 public partial class weapon_manager : Node2D
 {
     public base_weapon current_weapon;
+    public Sprite2D hand;
     public List<base_weapon> weapons = new List<base_weapon>();
 	public override void _Ready()
 	{
         // 初始化武器列表
         init_weapon_list();
         current_weapon = weapons[0];
+
+        // 获取节点
+        hand = GetNode<Sprite2D>("hand");
 	}
 
 	public override void _Process(double delta)
     {
+        base._Process(delta);
+        Vector2 target_position = GetGlobalMousePosition();
+        // 朝向鼠标
+        Rotation = Mathf.Atan2(target_position.Y - GlobalPosition.Y, target_position.X - GlobalPosition.X);
+
         // 切换武器
         if (Input.IsActionJustPressed("change_weapon"))
         {
@@ -36,7 +45,7 @@ public partial class weapon_manager : Node2D
             {
                 weapon.Visible = true;
             }
-            current_weapon.GlobalPosition = GlobalPosition;
+            current_weapon.GlobalPosition = hand.GlobalPosition;
             current_weapon.body.Velocity = Vector2.Zero;
         }
     }

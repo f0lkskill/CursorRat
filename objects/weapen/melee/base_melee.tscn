@@ -5,11 +5,13 @@
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vvrfa"]
 
 [node name="base_melee" type="CharacterBody2D" unique_id=358912040]
+disable_mode = 1
+collision_layer = 0
+collision_mask = 0
 
 [node name="init" parent="." unique_id=2120728096 instance=ExtResource("1_hwors")]
 
 [node name="shape" type="CollisionShape2D" parent="." unique_id=1697211739]
-disabled = true
 
 [node name="light_occluder" type="LightOccluder2D" parent="." unique_id=1079869485]
 occluder = SubResource("OccluderPolygon2D_vvrfa")

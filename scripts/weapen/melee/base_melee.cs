@@ -10,6 +10,7 @@ public partial class base_melee : base_weapon
         CollisionShape2D coll = body.GetNode<CollisionShape2D>("shape");
         CollisionShape2D area = body.GetNode<CollisionShape2D>("area/shape");
         area.Shape = coll.Shape;
+        // coll.QueueFree();
         area.GetParent<Area2D>().Scale = new Vector2(texture_scale, texture_scale);
         area.Position += offset;
     }
@@ -40,10 +41,7 @@ public partial class base_melee : base_weapon
         base_enemy enemy = FindParentOfType<base_enemy>(collider);
         if (enemy != null)
         {
-            if (enemy._invincibleTimer <= 0.0f)
-            {
-                enemy.TakeHit(this, damage);
-            }
+            enemy.TakeHit(this, damage);
             // QueueFree();
         }
     }

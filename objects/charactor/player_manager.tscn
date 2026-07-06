@@ -34,19 +34,23 @@ Speed = 1000.0
 KnockbackStrength = 400.0
 
 [node name="body" parent="." unique_id=165994402 instance=ExtResource("1_iq5em")]
+collision_layer = 1
+collision_mask = 1
 
 [node name="weapon" type="Node2D" parent="body" unique_id=1519231177]
-position = Vector2(150, 0)
 script = ExtResource("5_inktr")
 
 [node name="hand" type="Sprite2D" parent="body/weapon" unique_id=996722304]
+position = Vector2(150, 0)
 texture = ExtResource("8_a04t8")
 
 [node name="knife" parent="body/weapon" unique_id=1248791426 instance=ExtResource("6_x24yt")]
+position = Vector2(150, 0)
 offset = Vector2(0, 100)
 texture_scale = 0.6
 
 [node name="gun" parent="body/weapon" unique_id=1033862369 instance=ExtResource("5_pxg0p")]
+position = Vector2(150, 0)
 bullet_speed = 1000.0
 bullet_life_time = 5.0
 
