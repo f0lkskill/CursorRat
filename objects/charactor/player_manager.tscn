@@ -8,12 +8,24 @@
 [ext_resource type="PackedScene" uid="uid://dqthwvmhm6h3v" path="res://objects/weapen/ranged/gun.tscn" id="5_pxg0p"]
 [ext_resource type="PackedScene" uid="uid://c2hvnhq8le70e" path="res://objects/weapen/melee/knife.tscn" id="6_x24yt"]
 [ext_resource type="Texture2D" uid="uid://cjf2d277nmlpu" path="res://assets/charactor/process_back.png" id="8_a04t8"]
+[ext_resource type="Texture2D" uid="uid://cw3kw4c42jbbv" path="res://icon.svg" id="9_osohh"]
 
 [sub_resource type="Resource" id="Resource_x24yt"]
 script = ExtResource("3_pxg0p")
 Health = 10000.0
 MaxHealth = 10000.0
 heal_label_scene = ExtResource("4_8tits")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gjke4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_osohh")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="player" type="Node2D" unique_id=163287506]
 script = ExtResource("1_bd8et")
@@ -23,18 +35,25 @@ KnockbackStrength = 400.0
 is_object = true
 
 [node name="body" parent="." unique_id=165994402 instance=ExtResource("1_iq5em")]
+collision_layer = 1
+collision_mask = 1
 
 [node name="weapon" type="Node2D" parent="body" unique_id=1519231177]
-position = Vector2(150, 0)
 script = ExtResource("5_inktr")
 
 [node name="hand" type="Sprite2D" parent="body/weapon" unique_id=996722304]
+position = Vector2(150, 0)
 texture = ExtResource("8_a04t8")
 
 [node name="knife" parent="body/weapon" unique_id=1248791426 instance=ExtResource("6_x24yt")]
+position = Vector2(150, 0)
 offset = Vector2(0, 100)
-texture_scale = 0.4
+texture_scale = 0.6
 
 [node name="gun" parent="body/weapon" unique_id=1033862369 instance=ExtResource("5_pxg0p")]
-bullet_scene = null
-auto_fire = false
+position = Vector2(150, 0)
+bullet_speed = 1000.0
+bullet_life_time = 5.0
+
+[node name="sprite" type="AnimatedSprite2D" parent="body" unique_id=1877293856]
+sprite_frames = SubResource("SpriteFrames_gjke4")

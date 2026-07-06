@@ -147,6 +147,8 @@ public partial class base_life : Node2D
                 _knockbackVelocity = knockbackDir;
                 _knockbackTimer = KnockbackDuration;
             }
+
+            // GD.Print($"TakeHit: {damage}, {knockbackDir}, KnockbackStrength: {KnockbackStrength}");
         }
 
         return true;

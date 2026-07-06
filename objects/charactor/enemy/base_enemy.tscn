@@ -2,29 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://bjgxukm7h72y1" path="res://objects/tools/init.tscn" id="1_xaf6i"]
 [ext_resource type="PackedScene" uid="uid://bere6gd76aftw" path="res://objects/ui/health_bar.tscn" id="3_vviut"]
-[ext_resource type="Texture2D" uid="uid://dctny621r7pnt" path="res://assets/charactor/bfChill.png" id="3_wunu1"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_wvhbo"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_wunu1")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rpcek"]
 
 [node name="base_enemy" type="CharacterBody2D" unique_id=165994402]
+motion_mode = 1
 
 [node name="init" parent="." unique_id=2120728096 instance=ExtResource("1_xaf6i")]
 
 [node name="health_bar" parent="." unique_id=1090233696 instance=ExtResource("3_vviut")]
-
-[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=72786469]
-sprite_frames = SubResource("SpriteFrames_wvhbo")
 
 [node name="shape" type="CollisionShape2D" parent="." unique_id=1761263628]
 

@@ -3,6 +3,18 @@
 [ext_resource type="Script" uid="uid://bwpb6ud4if5p7" path="res://scripts/weapen/ranged/gun.cs" id="1_squ7s"]
 [ext_resource type="PackedScene" uid="uid://bn2cwnepf0bgw" path="res://objects/weapen/ranged/bullet/bullet.tscn" id="2_ubds5"]
 [ext_resource type="PackedScene" uid="uid://ctjhb82yxasfk" path="res://objects/weapen/ranged/base_ranged.tscn" id="3_squ7s"]
+[ext_resource type="Texture2D" uid="uid://cw3kw4c42jbbv" path="res://icon.svg" id="4_ubds5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uxx52"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ubds5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="gun" type="Node2D" unique_id=1033862369]
 script = ExtResource("1_squ7s")
@@ -12,3 +24,6 @@ is_object = true
 
 [node name="body" parent="." unique_id=358912040 instance=ExtResource("3_squ7s")]
 collision_layer = 2
+
+[node name="sprite" type="AnimatedSprite2D" parent="body" unique_id=352253704]
+sprite_frames = SubResource("SpriteFrames_uxx52")

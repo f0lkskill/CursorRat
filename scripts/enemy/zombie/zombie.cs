@@ -3,15 +3,10 @@ using System;
 
 public partial class zombie : base_enemy
 {
-
-
 	public override void _Ready()
     {
         base._Ready();
         body.GetNode<AnimatedSprite2D>("sprite").Scale = new Vector2(texture_scale, texture_scale);
-        // 降低敌人自己的击退强度, 避免被弹飞太远
-        KnockbackStrength = 300.0f;
-        KnockbackDuration = 0.2f;
     }
 
 	public override void _PhysicsProcess(double delta)
@@ -31,11 +26,11 @@ public partial class zombie : base_enemy
         direction = direction.Normalized();
         Vector2 velocity = direction * Speed;
 
-        // 击退期间降低主动移动, 避免持续推挤导致"粘在一起"
-        if (IsKnockbackActive())
-        {
-            velocity *= 0.2f;
-        }
+        // // 击退期间降低主动移动, 避免持续推挤导致"粘在一起"
+        // if (IsKnockbackActive())
+        // {
+        //     velocity *= 0.2f;
+        // }
 
         // 叠加击退速度 (反向推开 + 玩家接触反向推开)
         velocity = ApplyKnockback(velocity);
