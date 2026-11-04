@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cxc1hb3f5d8p6" path="res://bin/assets/image/enemy/cat/base_face.png" id="4_lonyb"]
 [ext_resource type="Texture2D" uid="uid://b8o0wbirswbxn" path="res://bin/assets/image/enemy/cat/base_mouce_close.png" id="5_63mdv"]
 [ext_resource type="Script" uid="uid://dvwc8tpn0v8nl" path="res://bin/src/enemy/base_cat_animation.gd" id="6_bo2uv"]
+[ext_resource type="Texture2D" uid="uid://dycnkg75fjps6" path="res://bin/assets/image/enemy/cat/base_hited_face.png" id="7_hitface"]
 
 [sub_resource type="AnimationRootNode" id="AnimationRootNode_glnxa"]
 
@@ -146,6 +147,12 @@ texture = ExtResource("3_4ql7p")
 
 [node name="face" type="Sprite2D" parent="head" unique_id=1518096956]
 texture = ExtResource("4_lonyb")
+
+[node name="hit_face" type="Sprite2D" parent="head" unique_id=1518096957]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+texture = ExtResource("7_hitface")
 
 [node name="mouce" type="Sprite2D" parent="head" unique_id=949319282]
 position = Vector2(1, 72)
