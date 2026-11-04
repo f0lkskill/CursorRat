@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://bl35igpj1rmxb"]
 
-[ext_resource type="Script" uid="uid://cd3iewjeqysye" path="res://bin/src/base_enemy.gd" id="1_4ql7p"]
+[ext_resource type="Script" uid="uid://cd3iewjeqysye" path="res://bin/src/enemy/base_enemy.gd" id="1_4ql7p"]
 [ext_resource type="Texture2D" uid="uid://dt73x6n6hxy7s" path="res://bin/assets/image/enemy/cat/base_head.png" id="1_iefud"]
 [ext_resource type="Texture2D" uid="uid://kwr4talhxn5j" path="res://bin/assets/image/enemy/cat/base_right_ear.png" id="2_bo2uv"]
 [ext_resource type="Texture2D" uid="uid://dm3laj5uxkabb" path="res://bin/assets/image/enemy/cat/base_left_ear.png" id="3_4ql7p"]
 [ext_resource type="Texture2D" uid="uid://cxc1hb3f5d8p6" path="res://bin/assets/image/enemy/cat/base_face.png" id="4_lonyb"]
 [ext_resource type="Texture2D" uid="uid://b8o0wbirswbxn" path="res://bin/assets/image/enemy/cat/base_mouce_close.png" id="5_63mdv"]
-[ext_resource type="Script" uid="uid://dvwc8tpn0v8nl" path="res://bin/src/base_cat_animation.gd" id="6_bo2uv"]
+[ext_resource type="Script" uid="uid://dvwc8tpn0v8nl" path="res://bin/src/enemy/base_cat_animation.gd" id="6_bo2uv"]
 
 [sub_resource type="AnimationRootNode" id="AnimationRootNode_glnxa"]
 

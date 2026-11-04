@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" uid="uid://b8jpdobd72p0r" path="res://bin/src/floating_text.gd" id="1_text"]
+[ext_resource type="Script" uid="uid://b8jpdobd72p0r" path="res://bin/src/effect/floating_text.gd" id="1_text"]
 
 [node name="FloatingText" type="Label"]
 z_index = 100

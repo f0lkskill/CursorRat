@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BulletSystem" format=3]
+
+[ext_resource type="Script" uid="uid://nl4ugw5nol0g" path="res://bin/src/data/bullet_system.gd" id="1_vgvau"]
+
+[resource]
+script = ExtResource("1_vgvau")
+damage = 10.0
+speed = 400.0
+lifetime = 3.0
+max_range = 800.0

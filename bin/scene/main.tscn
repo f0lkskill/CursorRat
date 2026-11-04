@@ -1,26 +1,13 @@
 [gd_scene format=3 uid="uid://dhbctihhcqanb"]
 
-[ext_resource type="Script" uid="uid://onx0jn1v8tkd" path="res://bin/src/game_manager.gd" id="1_cwuu1"]
+[ext_resource type="Script" uid="uid://onx0jn1v8tkd" path="res://bin/src/core/game_manager.gd" id="1_cwuu1"]
 [ext_resource type="PackedScene" uid="uid://bl35igpj1rmxb" path="res://bin/scene/base_enemy.tscn" id="1_fpb3j"]
 [ext_resource type="PackedScene" uid="uid://1jjxbg06o47n" path="res://bin/scene/player.tscn" id="2_hetxm"]
-[ext_resource type="Script" uid="uid://due8gf66qi4fi" path="res://bin/src/life_system.gd" id="3_d37ox"]
-[ext_resource type="Script" uid="uid://0fnxqim0e5j8" path="res://bin/src/enemy_manager.gd" id="4_3hd24"]
+[ext_resource type="Script" uid="uid://0fnxqim0e5j8" path="res://bin/src/enemy/enemy_manager.gd" id="4_3hd24"]
 [ext_resource type="PackedScene" path="res://bin/scene/shooter_cat_enemy.tscn" id="5_shooter"]
-
-[sub_resource type="Resource" id="Resource_j8j2r"]
-script = ExtResource("3_d37ox")
-speed = 100.0
-metadata/_custom_type_script = "uid://due8gf66qi4fi"
-
-[sub_resource type="Resource" id="Resource_glnxa"]
-script = ExtResource("3_d37ox")
-speed = 100.0
-metadata/_custom_type_script = "uid://due8gf66qi4fi"
-
-[sub_resource type="Resource" id="Resource_shooter"]
-script = ExtResource("3_d37ox")
-speed = 80.0
-metadata/_custom_type_script = "uid://due8gf66qi4fi"
+[ext_resource type="Resource" path="res://bin/assets/res/cat_base_life.tres" id="6_cat_life"]
+[ext_resource type="Resource" path="res://bin/assets/res/cat_shooter_life.tres" id="7_shooter_life"]
+[ext_resource type="Resource" path="res://bin/assets/res/player_life.tres" id="8_player_life"]
 
 [node name="Main" type="Node2D" unique_id=1373186005 node_paths=PackedStringArray("player", "enemies")]
 script = ExtResource("1_cwuu1")
@@ -33,12 +20,12 @@ script = ExtResource("4_3hd24")
 [node name="BaseEnemy" parent="enemies" unique_id=79104227 instance=ExtResource("1_fpb3j")]
 position = Vector2(553, 361)
 scale = Vector2(0.5, 0.5)
-life_system = SubResource("Resource_j8j2r")
+life_system = ExtResource("6_cat_life")
 
 [node name="ShooterCat" parent="enemies" instance=ExtResource("5_shooter")]
 position = Vector2(300, 200)
 scale = Vector2(0.5, 0.5)
-life_system = SubResource("Resource_shooter")
+life_system = ExtResource("7_shooter_life")
 
 [node name="player" parent="." unique_id=658822671 instance=ExtResource("2_hetxm")]
-life_system = SubResource("Resource_glnxa")
+life_system = ExtResource("8_player_life")
