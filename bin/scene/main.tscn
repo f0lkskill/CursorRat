@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://dhbctihhcqanb"]
 
 [ext_resource type="Script" uid="uid://onx0jn1v8tkd" path="res://bin/src/core/game_manager.gd" id="1_cwuu1"]
-[ext_resource type="PackedScene" uid="uid://bl35igpj1rmxb" path="res://bin/scene/base_enemy.tscn" id="1_fpb3j"]
+[ext_resource type="PackedScene" path="res://bin/scene/base_cat_enemy.tscn" id="1_fpb3j"]
 [ext_resource type="PackedScene" uid="uid://1jjxbg06o47n" path="res://bin/scene/player.tscn" id="2_hetxm"]
 [ext_resource type="Script" uid="uid://0fnxqim0e5j8" path="res://bin/src/enemy/enemy_manager.gd" id="4_3hd24"]
 [ext_resource type="PackedScene" path="res://bin/scene/shooter_cat_enemy.tscn" id="5_shooter"]
 [ext_resource type="Resource" path="res://bin/assets/res/cat_base_life.tres" id="6_cat_life"]
 [ext_resource type="Resource" path="res://bin/assets/res/cat_shooter_life.tres" id="7_shooter_life"]
 [ext_resource type="Resource" path="res://bin/assets/res/player_life.tres" id="8_player_life"]
+[ext_resource type="Script" uid="uid://eux764b1kgmb" path="res://bin/src/camera/edge_camera.gd" id="9_camera"]
 
 [node name="Main" type="Node2D" unique_id=1373186005 node_paths=PackedStringArray("player", "enemies")]
 script = ExtResource("1_cwuu1")
@@ -29,3 +30,6 @@ life_system = ExtResource("7_shooter_life")
 
 [node name="player" parent="." unique_id=658822671 instance=ExtResource("2_hetxm")]
 life_system = ExtResource("8_player_life")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1910000001]
+script = ExtResource("9_camera")

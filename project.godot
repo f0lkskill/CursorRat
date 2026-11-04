@@ -17,15 +17,15 @@ config/icon="res://icon.svg"
 
 [display]
 
+window/size/viewport_width=1600
+window/size/viewport_height=900
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 mouse_cursor/custom_image="uid://dhp2rxuajtf3g"
 
-[layer_names]
+[editor]
 
-2d_physics/layer_1="player"
-2d_physics/layer_2="enemy"
-2d_physics/layer_3="enemy_bullet"
+movie_writer/movie_file="movie.avi"
 
 [file_customization]
 
@@ -34,6 +34,12 @@ folder_colors={
 "res://bin/scene/": "blue",
 "res://bin/src/": "green"
 }
+
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="enemy"
+2d_physics/layer_3="enemy_bullet"
 
 [physics]
 

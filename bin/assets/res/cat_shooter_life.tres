@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="LifeSystem" format=3]
+[gd_resource type="Resource" script_class="LifeSystem" format=3 uid="uid://bx1c3d1lkiymm"]
 
 [ext_resource type="Script" uid="uid://due8gf66qi4fi" path="res://bin/src/data/life_system.gd" id="1_4n2q2"]
 
 [resource]
 script = ExtResource("1_4n2q2")
-max_hp = 100.0
-speed = 80.0
+speed = 200.0

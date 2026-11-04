@@ -22,6 +22,7 @@ func _ready() -> void:
 	super._ready()
 	# 枪手猫使用愤怒表情
 	face_sprite.texture = ANGRY_FACE
+	_default_face = ANGRY_FACE
 	mouth_sprite.texture = MOUTH_CLOSE
 	_base_scale = scale
 	fire_timer.wait_time = fire_interval
