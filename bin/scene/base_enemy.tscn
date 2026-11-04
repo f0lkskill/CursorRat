@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://bl35igpj1rmxb"]
+
+[ext_resource type="Texture2D" uid="uid://d16mvbknsalgo" path="res://bin/assets/image/head.png" id="1_iefud"]
+[ext_resource type="Texture2D" uid="uid://ckpe720gu0yoh" path="res://bin/assets/image/right_ear.png" id="2_bo2uv"]
+[ext_resource type="Texture2D" uid="uid://bjalwa4074vmb" path="res://bin/assets/image/left_ear.png" id="3_4ql7p"]
+[ext_resource type="Texture2D" uid="uid://dpcf6wr4x00dl" path="res://bin/assets/image/face.png" id="4_lonyb"]
+[ext_resource type="Texture2D" uid="uid://ccw5gvlgsrofs" path="res://bin/assets/image/mouce.png" id="5_63mdv"]
+
+[sub_resource type="AnimationRootNode" id="AnimationRootNode_glnxa"]
+
+[sub_resource type="Animation" id="Animation_iefud"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head/right_ear:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("head/left_ear:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("head/face:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bo2uv"]
+resource_name = "ear_swing"
+length = 1.0333333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head/right_ear:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1.0333333),
+"transitions": PackedFloat32Array(2.2, 3, 1),
+"update": 0,
+"values": [0.0, 0.08726646259971647, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("head/left_ear:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1.0333333),
+"transitions": PackedFloat32Array(2.2, 3, 1),
+"update": 0,
+"values": [0.0, -0.08726646259971647, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4ql7p"]
+resource_name = "face_idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head/face:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5207525, 1),
+"transitions": PackedFloat32Array(3, 1, 3),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1e-05), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lonyb"]
+_data = {
+&"RESET": SubResource("Animation_iefud"),
+&"ear_swing": SubResource("Animation_bo2uv"),
+&"face_idle": SubResource("Animation_4ql7p")
+}
+
+[node name="BaseEnemy" type="Node2D" unique_id=79104227]
+
+[node name="head" type="Sprite2D" parent="." unique_id=1826247846]
+texture = ExtResource("1_iefud")
+
+[node name="right_ear" type="Sprite2D" parent="head" unique_id=321957687]
+position = Vector2(80.00006, -102)
+texture = ExtResource("2_bo2uv")
+
+[node name="left_ear" type="Sprite2D" parent="head" unique_id=918289128]
+position = Vector2(-80.999985, -105.00001)
+texture = ExtResource("3_4ql7p")
+
+[node name="face" type="Sprite2D" parent="head" unique_id=1518096956]
+texture = ExtResource("4_lonyb")
+
+[node name="mouce" type="Sprite2D" parent="head" unique_id=949319282]
+position = Vector2(1, 72)
+texture = ExtResource("5_63mdv")
+
+[node name="ant" type="AnimationTree" parent="." unique_id=1325092613]
+tree_root = SubResource("AnimationRootNode_glnxa")
+
+[node name="face_idle" type="AnimationPlayer" parent="ant" unique_id=609819293]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_lonyb")
+speed_scale = 2.0
+
+[node name="ear_idle" type="AnimationPlayer" parent="ant" unique_id=1152800372]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_lonyb")
