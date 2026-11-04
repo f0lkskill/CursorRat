@@ -9,9 +9,9 @@ func initLifeSystem():
     life_system.current_hp = life_system.max_hp
 
 func hit(damage:float):
-    if life_system.current_hp - damage >= 0:
-        life_system.current_hp -= damage
-        print("Hit! %s" % damage)
+    # 扣血并限制最低为 0
+    life_system.current_hp = max(life_system.current_hp - damage, 0.0)
+    print("Hit! %s" % damage)
 
 func _ready() -> void:
     initLifeSystem()

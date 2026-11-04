@@ -4,9 +4,6 @@ class_name base_enemy
 
 @export var dtarget:base_obj
 
-func _ready() -> void:
-	pass
-
 func _process(delta: float) -> void:
 	if(not dtarget):return
 
