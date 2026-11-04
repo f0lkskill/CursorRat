@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjalwa4074vmb"
-path="res://.godot/imported/left_ear.png-27771b0ed4a804b086d6082cda6faf43.ctex"
+uid="uid://b8o0wbirswbxn"
+path="res://.godot/imported/base_mouce_close.png-3c92c9b3bf83a184b60d8c47c7e77840.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bin/assets/image/left_ear.png"
-dest_files=["res://.godot/imported/left_ear.png-27771b0ed4a804b086d6082cda6faf43.ctex"]
+source_file="res://bin/assets/image/enemy/cat/base_mouce_close.png"
+dest_files=["res://.godot/imported/base_mouce_close.png-3c92c9b3bf83a184b60d8c47c7e77840.ctex"]
 
 [params]
 

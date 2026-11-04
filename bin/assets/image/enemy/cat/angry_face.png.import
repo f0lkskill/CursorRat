@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dml0u6mt4vogh"
-path="res://.godot/imported/bullet.png-29fe856c6b327e5520d411a0fe74d18e.ctex"
+uid="uid://by758r6xolpms"
+path="res://.godot/imported/angry_face.png-4facaf4ff6e1816a22a46505699c1411.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bin/assets/image/bullet.png"
-dest_files=["res://.godot/imported/bullet.png-29fe856c6b327e5520d411a0fe74d18e.ctex"]
+source_file="res://bin/assets/image/enemy/cat/angry_face.png"
+dest_files=["res://.godot/imported/angry_face.png-4facaf4ff6e1816a22a46505699c1411.ctex"]
 
 [params]
 

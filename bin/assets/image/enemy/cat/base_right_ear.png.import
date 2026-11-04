@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccw5gvlgsrofs"
-path="res://.godot/imported/mouce.png-55297b19cd7497e60daa951eb63527bf.ctex"
+uid="uid://kwr4talhxn5j"
+path="res://.godot/imported/base_right_ear.png-79a3a37889baa54213e5b08ebfe4a8c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bin/assets/image/mouce.png"
-dest_files=["res://.godot/imported/mouce.png-55297b19cd7497e60daa951eb63527bf.ctex"]
+source_file="res://bin/assets/image/enemy/cat/base_right_ear.png"
+dest_files=["res://.godot/imported/base_right_ear.png-79a3a37889baa54213e5b08ebfe4a8c5.ctex"]
 
 [params]
 
