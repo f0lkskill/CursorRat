@@ -7,7 +7,7 @@ class_name player
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Input.set_custom_mouse_cursor(null)
-	pass
+	super._ready() # 初始化玩家生命值
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,7 +1,10 @@
-[gd_scene format=3 uid="uid://1jjxbg06o47n"]
+[gd_scene load_steps=3 format=3 uid="uid://1jjxbg06o47n"]
 
 [ext_resource type="Script" uid="uid://chuhhjgiv8c65" path="res://bin/src/player.gd" id="1_7vbnf"]
 [ext_resource type="Texture2D" uid="uid://dhp2rxuajtf3g" path="res://bin/assets/image/cursor.png" id="2_7vbnf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_player"]
+radius = 24.0
 
 [node name="player" type="Node2D" unique_id=658822671]
 script = ExtResource("1_7vbnf")
@@ -10,3 +13,10 @@ script = ExtResource("1_7vbnf")
 visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_7vbnf")
+
+[node name="hurtbox" type="Area2D" parent="." unique_id=1180000001]
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=1180000002]
+shape = SubResource("CircleShape2D_player")

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://1jjxbg06o47n" path="res://bin/scene/player.tscn" id="2_hetxm"]
 [ext_resource type="Script" uid="uid://due8gf66qi4fi" path="res://bin/src/life_system.gd" id="3_d37ox"]
 [ext_resource type="Script" uid="uid://0fnxqim0e5j8" path="res://bin/src/enemy_manager.gd" id="4_3hd24"]
+[ext_resource type="PackedScene" path="res://bin/scene/shooter_cat_enemy.tscn" id="5_shooter"]
 
 [sub_resource type="Resource" id="Resource_j8j2r"]
 script = ExtResource("3_d37ox")
@@ -14,6 +15,11 @@ metadata/_custom_type_script = "uid://due8gf66qi4fi"
 [sub_resource type="Resource" id="Resource_glnxa"]
 script = ExtResource("3_d37ox")
 speed = 100.0
+metadata/_custom_type_script = "uid://due8gf66qi4fi"
+
+[sub_resource type="Resource" id="Resource_shooter"]
+script = ExtResource("3_d37ox")
+speed = 80.0
 metadata/_custom_type_script = "uid://due8gf66qi4fi"
 
 [node name="Main" type="Node2D" unique_id=1373186005 node_paths=PackedStringArray("player", "enemies")]
@@ -28,6 +34,11 @@ script = ExtResource("4_3hd24")
 position = Vector2(553, 361)
 scale = Vector2(0.5, 0.5)
 life_system = SubResource("Resource_j8j2r")
+
+[node name="ShooterCat" parent="enemies" instance=ExtResource("5_shooter")]
+position = Vector2(300, 200)
+scale = Vector2(0.5, 0.5)
+life_system = SubResource("Resource_shooter")
 
 [node name="player" parent="." unique_id=658822671 instance=ExtResource("2_hetxm")]
 life_system = SubResource("Resource_glnxa")

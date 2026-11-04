@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://bin/scene/base_cat_enemy.tscn" id="1_base"]
+[ext_resource type="Script" uid="uid://blgwdavqxjd4k" path="res://bin/src/shooter_cat_enemy.gd" id="2_script"]
+[ext_resource type="Script" uid="uid://nl4ugw5nol0g" path="res://bin/src/bullet_system.gd" id="3_bulletsys"]
+
+[sub_resource type="Resource" id="Resource_bullet"]
+script = ExtResource("3_bulletsys")
+damage = 10.0
+speed = 400.0
+lifetime = 3.0
+
+[node name="ShooterCatEnemy" instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+bullet_system = SubResource("Resource_bullet")
+
+[node name="FireTimer" type="Timer" parent="."]
